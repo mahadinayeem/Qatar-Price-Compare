@@ -9,6 +9,11 @@ const nextConfig = {
     ],
     unoptimized: true,
   },
+  experimental: {
+    outputFileTracingIncludes: {
+      "/api/**/*": ["data/products.db"],
+    },
+  },
 };
 
 export default nextConfig;
