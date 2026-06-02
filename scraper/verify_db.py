@@ -1,7 +1,7 @@
 import sqlite3
 
 def main():
-    conn = sqlite3.connect("../data/products.db")
+    conn = sqlite3.connect("../frontend/data/products.db")
     conn.row_factory = sqlite3.Row
     print("=== Companies ===")
     for row in conn.execute("SELECT * FROM companies"):

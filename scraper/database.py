@@ -12,7 +12,7 @@ from utils import build_common_product_name, normalize_product_name
 
 logger = logging.getLogger(__name__)
 
-DATABASE_PATH = os.getenv("DATABASE_PATH", "../data/products.db")
+DATABASE_PATH = os.getenv("DATABASE_PATH", "../frontend/data/products.db")
 
 
 def get_connection() -> sqlite3.Connection:

@@ -3,7 +3,7 @@ import path from "path";
 
 const DB_PATH =
   process.env.DATABASE_PATH ||
-  path.join(process.cwd(), "..", "data", "products.db");
+  path.join(process.cwd(), "data", "products.db");
 
 let db: Database.Database | null = null;
 
