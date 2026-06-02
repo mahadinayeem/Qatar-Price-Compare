@@ -1,0 +1,26 @@
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/.env.local
+
+# Python
+scraper/__pycache__/
+scraper/*.pyc
+scraper/.venv/
+scraper/venv/
+
+# Data - keep DB in git for Vercel deployments
+# data/*.db  <-- intentionally tracked
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+scraper/logs/
+
+# Env
+.env
+.env.*
+!.env.example
