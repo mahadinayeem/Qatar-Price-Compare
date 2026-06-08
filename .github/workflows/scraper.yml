@@ -1,9 +1,9 @@
 name: Daily Price Scraper
 
 on:
-  # ── Scheduled run: every day at 18:00 UTC = midnight Qatar time (UTC+6) ──
+  # ── Scheduled run: every day at 20:00 UTC = 2:00 AM BD Time / 11:00 PM Qatar Time ──
   schedule:
-    - cron: "0 18 * * *"
+    - cron: "0 20 * * *"
 
   # ── Manual trigger from GitHub UI ──
   workflow_dispatch:
