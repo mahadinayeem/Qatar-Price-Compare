@@ -270,6 +270,8 @@ def _build_drive_service():
             raise ValueError("GOOGLE_CREDENTIALS environment variable not set")
 
         creds_info = json.loads(creds_json)
+        logger.info(f"Connecting to Google Drive with Service Account: {creds_info.get('client_email')}")
+
         scopes = [
             "https://www.googleapis.com/auth/drive.file",
             "https://www.googleapis.com/auth/drive",
@@ -278,8 +280,8 @@ def _build_drive_service():
             creds_info, scopes=scopes
         )
         return build("drive", "v3", credentials=credentials, cache_discovery=False)
-    except ImportError:
-        logger.error("google-api-python-client not installed. Run: pip install google-api-python-client google-auth")
+    except Exception as e:
+        logger.error(f"Failed to build Google Drive service: {e}")
         raise
 
 
