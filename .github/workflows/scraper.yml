@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 60          # safety: kill if hung
 
     env:
-      DATABASE_PATH: frontend/data/products.db
+      DATABASE_PATH: ../frontend/data/products.db
       GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       GOOGLE_DRIVE_FOLDER_ID: "1-CTfEXTkOY-YzfHxMt_uO2Ij6VnNIbbO"
 
@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # 2. Set up Python
       - name: Set up Python 3.11
@@ -36,21 +37,27 @@ jobs:
 
       # 3. Install Python dependencies
       - name: Install dependencies
-        run: pip install -r scraper/requirements.txt
+        working-directory: scraper
+        run: pip install -r requirements.txt
 
       # 4. Install Playwright browsers (Chromium only)
+      #    Use python -m playwright to avoid PATH issues in CI
       - name: Install Playwright Chromium
-        run: playwright install chromium --with-deps
+        run: python -m playwright install --with-deps chromium
 
       # 5. Run scraper (saves to SQLite) + export CSV + upload to Drive
       - name: Run scraper & export
-        run: python scraper/main.py
+        working-directory: scraper
+        run: python main.py
 
       # 6. Commit & push updated SQLite DB back to repo (so Vercel can read it)
       - name: Commit updated database
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add frontend/data/products.db data/
+          git add frontend/data/products.db
+          if [ -d data/daily ]; then git add data/daily/; fi
           git diff --cached --quiet || git commit -m "chore: daily scrape $(date -u +'%Y-%m-%d')"
           git push
