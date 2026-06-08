@@ -1,5 +1,6 @@
 """
-Main scraper orchestrator - runs all scrapers concurrently
+Main scraper orchestrator - runs all scrapers concurrently,
+then exports today's data to CSV and uploads to Google Drive.
 """
 
 import asyncio
@@ -33,14 +34,28 @@ async def run_all():
         return_exceptions=True,
     )
 
+    scraper_ok = True
     for name, result in zip(["Rawabi", "Family", "Lulu"], results):
         if isinstance(result, Exception):
             logger.error(f"{name} scraper FAILED: {result}")
+            scraper_ok = False
         else:
             logger.info(f"{name} scraper completed successfully")
 
     elapsed = time.time() - start
     logger.info(f"=== Scraping complete in {elapsed:.1f}s ===")
+
+    # Export CSV and upload to Google Drive
+    if scraper_ok:
+        logger.info("=== Starting CSV export & Drive upload ===")
+        try:
+            from export_csv import export_and_upload
+            export_and_upload()
+            logger.info("=== CSV export & Drive upload complete ===")
+        except Exception as e:
+            logger.error(f"CSV export/upload FAILED: {e}")
+    else:
+        logger.warning("Skipping CSV export because one or more scrapers failed.")
 
 
 if __name__ == "__main__":
