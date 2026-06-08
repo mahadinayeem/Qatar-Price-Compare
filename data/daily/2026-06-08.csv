@@ -1,0 +1,634 @@
+date,category,product_name,product_type,origin,unit,lulu_price,rawabi_price,family_price,price_per_kg_lulu,price_per_kg_rawabi,price_per_kg_family,cheapest_store,status
+2026-06-08,Fruits,Apple,Apples,China,1kg,,8.0,,,8.0,,Rawabi,Active
+2026-06-08,Fruits,Apple Africa,Apples,,1kg,,10.5,,,10.5,,Rawabi,Active
+2026-06-08,Fruits,Apple Fuji,Apples,China,1kg,,9.5,,,9.5,,Rawabi,Active
+2026-06-08,Fruits,Apple Fuji Jumbo,Apples,,1kg,10.75,,,10.75,,,Lulu,Active
+2026-06-08,Fruits,Apple Gala,Apples,France,1kg,,9.75,,,9.75,,Rawabi,Active
+2026-06-08,Fruits,Apple Gala,Apples,Italy,1kg,,9.75,,,9.75,,Rawabi,Active
+2026-06-08,Fruits,Apple Gala Chili,Apples,,1kg,,10.5,,,10.5,,Rawabi,Active
+2026-06-08,Fruits,Apple Golden,Apples,Italy,1kg,9.75,9.75,,9.75,9.75,,Lulu,Active
+2026-06-08,Fruits,Apple Golden Packet 1X10,Apples,Iran,,,8.5,,,,,,Active
+2026-06-08,Fruits,Apple Green,Apples,South Africa,1kg,12.75,,,12.75,,,Lulu,Active
+2026-06-08,Fruits,Apple Green,Apples,Spain,1kg,12.75,,,12.75,,,Lulu,Active
+2026-06-08,Fruits,Apple Pink Lady,Apples,France,1kg,13.75,,,13.75,,,Lulu,Active
+2026-06-08,Fruits,Apple Red Small-Box,Apples,Iran,,,24.0,,,,,,Active
+2026-06-08,Fruits,Apple Rockit,Apples,,1.0pkt,33.5,,,33500.0,,,Lulu,Active
+2026-06-08,Fruits,Apple Royal Gala,Apples,Italy,1kg,10.5,,,10.5,,,Lulu,Active
+2026-06-08,Fruits,Apple Royal Gala,Apples,France,1kg,11.0,,,11.0,,,Lulu,Active
+2026-06-08,Fruits,Apple Royal Gala,Apples,Turkey,1kg,8.75,,,8.75,,,Lulu,Active
+2026-06-08,Fruits,Apple Royal Gala New Zealand,Apples,,1kg,13.75,,,13.75,,,Lulu,Active
+2026-06-08,Fruits,Apple Royal Gala Poland,Apples,,1kg,7.75,,,7.75,,,Lulu,Active
+2026-06-08,Fruits,Apple Royal Gala Portugal,Apples,,1kg,11.0,,,11.0,,,Lulu,Active
+2026-06-08,Fruits,Apple Royal Gala Serbia,Apples,,1kg,11.5,,,11.5,,,Lulu,Active
+2026-06-08,Fruits,Apple Royal Gala Ukraine,Apples,,1kg,10.0,,,10.0,,,Lulu,Active
+2026-06-08,Fruits,Colacasia Bangaladesh,Apples,,1kg,,18.0,,,18.0,,Rawabi,Active
+2026-06-08,Fruits,Galanga,Apples,Thailand,100g,4.75,,,47.5,,,Lulu,Active
+2026-06-08,Fruits,Golden Berry Columbia,Apples,,1.0pkt,22.5,,,22500.0,,,Lulu,Active
+2026-06-08,Fruits,Pineapple,Apples,India,1kg,,18.0,,,18.0,,Rawabi,Active
+2026-06-08,Fruits,Pineapple,Apples,,1kg,14.5,,,14.5,,,Lulu,Active
+2026-06-08,Fruits,Pineapple ( - ),Apples,India,1.0pc,27.25,,,27250.0,,,Lulu,Active
+2026-06-08,Fruits,Pineapple Cuts,Apples,,250g,15.0,,,60.0,,,Lulu,Active
+2026-06-08,Fruits,Pineapple Golden,Apples,Kenya,1kg,,13.0,,,13.0,,Rawabi,Active
+2026-06-08,Fruits,Pineapple Peeled,Apples,Thailand,1kg,,44.0,,,44.0,,Rawabi,Active
+2026-06-08,Fruits,Pineapple Peeled,Apples,Thailand,500g,,22.0,,,44.0,,Rawabi,Active
+2026-06-08,Fruits,Rose Apple -Packet,Apples,Thailand,,,30.0,,,,,,Active
+2026-06-08,Fruits,Apricot,Apricots,Jordan,1kg,,25.0,,,25.0,,Rawabi,Active
+2026-06-08,Fruits,Apricot,Apricots,Jordan,1.0pkt,13.5,,,13500.0,,,Lulu,Active
+2026-06-08,Fruits,Apricot Small Box,Apricots,Lebanon,600g,20.0,,,33.33,,,Lulu,Active
+2026-06-08,Fruits,Apricot Syria,Apricots,,1.0pkt,11.75,,,11750.0,,,Lulu,Active
+2026-06-08,Fruits,Avocado,Avocado,Sri Lanka,1kg,24.5,,,24.5,,,Lulu,Active
+2026-06-08,Fruits,Avocado,Avocado,Lebanon,1kg,41.5,,,41.5,,,Lulu,Active
+2026-06-08,Fruits,Avocado By Air,Avocado,Uganda,1kg,,19.0,,,19.0,,Rawabi,Active
+2026-06-08,Fruits,Avocado Hass,Avocado,Uganda,1kg,,26.0,,,26.0,,Rawabi,Active
+2026-06-08,Fruits,Avocado Hass,Avocado,Kenya,1kg,,20.0,,,20.0,,Rawabi,Active
+2026-06-08,Fruits,Avocado Hass,Avocado,Kenya,500g,14.5,,,29.0,,,Lulu,Active
+2026-06-08,Fruits,Avocado Hass,Avocado,,2.0pcs,21.5,,,10750.0,,,Lulu,Active
+2026-06-08,Fruits,Avocados Hass,Avocado,,500g,23.75,,,47.5,,,Lulu,Active
+2026-06-08,Fruits,Banana,Banana,Philippines,1kg,,7.75,,,7.75,,Rawabi,Active
+2026-06-08,Fruits,Banana,Banana,Ecuador,1kg,7.5,7.75,,7.5,7.75,,Lulu,Active
+2026-06-08,Fruits,Banana -Carton,Banana,Philippines,,,91.0,,,,,,Active
+2026-06-08,Fruits,Banana Flower,Banana,India,,,,17.5,,,,,Active
+2026-06-08,Fruits,Banana Green,Banana,India,,,,4.25,,,,,Active
+2026-06-08,Fruits,Banana Leaf,Banana,India,1.0pc,1.75,,,1750.0,,,Lulu,Active
+2026-06-08,Fruits,Banana Leaves,Banana,India,1.0pc,,1.75,,,1750.0,,Rawabi,Active
+2026-06-08,Fruits,Banana Pindi/Stem,Banana,,500g,8.75,,,17.5,,,Lulu,Active
+2026-06-08,Fruits,Banana Rasakadali,Banana,India,500g,8.5,,,17.0,,,Lulu,Active
+2026-06-08,Fruits,Banana Red Poovan,Banana,India,500g,8.25,,,16.5,,,Lulu,Active
+2026-06-08,Fruits,Banana Yellow,Banana,India,1kg,14.75,14.75,,14.75,14.75,,Lulu,Active
+2026-06-08,Fruits,Kadali Banana By Air,Banana,India,1kg,,18.5,,,18.5,,Rawabi,Active
+2026-06-08,Fruits,Kadhali Banana,Banana,India,1kg,,18.5,,,18.5,,Rawabi,Active
+2026-06-08,Fruits,Black Berry -Packet,Berries,Morocco,,,25.0,,,,,,Active
+2026-06-08,Fruits,Blueberries Pkt,Berries,Egypt,125g,,12.0,,,96.0,,Rawabi,Active
+2026-06-08,Fruits,Blueberry,Berries,,1.0pkt,13.5,,,13500.0,,,Lulu,Active
+2026-06-08,Fruits,Blueberry,Berries,Morocco,125g,8.75,,,70.0,,,Lulu,Active
+2026-06-08,Fruits,Blueberry -Packet,Berries,Morocco,,,16.0,,,,,,Active
+2026-06-08,Fruits,Cherry Syria Plastic,Berries,,1.0pkt,17.75,,,17750.0,,,Lulu,Active
+2026-06-08,Fruits,Driscoll'S Blueberry,Berries,,500g,36.5,,,73.0,,,Lulu,Active
+2026-06-08,Fruits,Driscoll'S Strawberry,Berries,Usa,250g,23.75,,,95.0,,,Lulu,Active
+2026-06-08,Fruits,Driscolls Strawberry,Berries,,250g,23.75,,,95.0,,,Lulu,Active
+2026-06-08,Fruits,Driscolls Strawberry Uk,Berries,,250g,23.75,,,95.0,,,Lulu,Active
+2026-06-08,Fruits,Fresh Cut Strawberry,Berries,,250g,20.0,,,80.0,,,Lulu,Active
+2026-06-08,Fruits,Gold Berry Colombia Packet,Berries,,,,14.0,,,,,,Active
+2026-06-08,Fruits,Goosberry Indian,Berries,India,1kg,,24.0,,,24.0,,Rawabi,Active
+2026-06-08,Fruits,Goosberry Indian,Berries,India,250g,,6.0,,,24.0,,Rawabi,Active
+2026-06-08,Fruits,Gooseberry (Amla),Berries,India,250g,5.75,,,23.0,,,Lulu,Active
+2026-06-08,Fruits,Mix Berry,Berries,,255g,42.0,,,164.71,,,Lulu,Active
+2026-06-08,Fruits,Physalis,Berries,,125g,,,15.0,,,120.0,Family,Active
+2026-06-08,Fruits,Physalis Colombia,Berries,,1.0pkt,12.5,,,12500.0,,,Lulu,Active
+2026-06-08,Fruits,Physalis Columbia,Berries,,1.0pkt,16.5,,,16500.0,,,Lulu,Active
+2026-06-08,Fruits,Physalis Fruit Colombia-Packet,Berries,,,,10.0,,,,,,Active
+2026-06-08,Fruits,Red Currant,Berries,Holland,1.0pkt,38.5,,,38500.0,,,Lulu,Active
+2026-06-08,Fruits,Strawberry Fruit Cut,Berries,,255g,28.0,,,109.8,,,Lulu,Active
+2026-06-08,Fruits,Chickoo,Chickoo,India,500g,12.5,,,25.0,,,Lulu,Active
+2026-06-08,Fruits,Chikoo -Plate,Chickoo,Thailand,,,25.0,,,,,,Active
+2026-06-08,Fruits,Fresh Cut Citrus,Citrus Fruits,,250g,4.5,,,18.0,,,Lulu,Active
+2026-06-08,Fruits,Fresh Cut Citrus,Citrus Fruits,,300g,4.75,,,15.83,,,Lulu,Active
+2026-06-08,Fruits,Kaffir Lime,Citrus Fruits,Thailand,250g,11.75,,,47.0,,,Lulu,Active
+2026-06-08,Fruits,Lemon Africa,Citrus Fruits,,1kg,,13.5,,,13.5,,Rawabi,Active
+2026-06-08,Fruits,Lemon Africa,Citrus Fruits,,250g,,3.5,,,14.0,,Rawabi,Active
+2026-06-08,Fruits,Lemon Big,Citrus Fruits,South Africa,500g,6.25,,,12.5,,,Lulu,Active
+2026-06-08,Fruits,Lime,Citrus Fruits,Vietnam,1kg,,14.0,,,14.0,,Rawabi,Active
+2026-06-08,Fruits,Lime,Citrus Fruits,Vietnam,250g,,3.5,,,14.0,,Rawabi,Active
+2026-06-08,Fruits,Lime,Citrus Fruits,India,250g,6.75,,,27.0,,,Lulu,Active
+2026-06-08,Fruits,Lime Leaves Pkt,Citrus Fruits,Thailand,100g,6.5,,,65.0,,,Lulu,Active
+2026-06-08,Fruits,Lime Seedless,Citrus Fruits,Vietnam,250g,4.25,,,17.0,,,Lulu,Active
+2026-06-08,Fruits,Mandarin,Citrus Fruits,Egypt,1kg,7.75,9.75,,7.75,9.75,,Lulu,Active
+2026-06-08,Fruits,Mandarin,Citrus Fruits,China,1kg,,10.5,,,10.5,,Rawabi,Active
+2026-06-08,Fruits,Mandarin Leanri Africa,Citrus Fruits,,1kg,,10.0,,,10.0,,Rawabi,Active
+2026-06-08,Fruits,Mandarin Nadorcot,Citrus Fruits,Morocco,1kg,,12.5,,,12.5,,Rawabi,Active
+2026-06-08,Fruits,Mandarin Nova,Citrus Fruits,South Africa,1kg,13.75,,,13.75,,,Lulu,Active
+2026-06-08,Fruits,Mandarin Wogan,Citrus Fruits,China,1kg,10.5,,,10.5,,,Lulu,Active
+2026-06-08,Fruits,Mandarine Nadarcott,Citrus Fruits,Egypt,1kg,,9.5,,,9.5,,Rawabi,Active
+2026-06-08,Fruits,Orange Navel,Citrus Fruits,Egypt,1kg,8.5,7.0,,8.5,7.0,,Rawabi,Active
+2026-06-08,Fruits,Orange Navel,Citrus Fruits,Spain,1kg,10.0,12.0,,10.0,12.0,,Lulu,Active
+2026-06-08,Fruits,Orange Navel,Citrus Fruits,China,500g,4.25,,,8.5,,,Lulu,Active
+2026-06-08,Fruits,Orange Valencia,Citrus Fruits,Egypt,1kg,5.0,,,5.0,,,Lulu,Active
+2026-06-08,Fruits,Orange Valencia,Citrus Fruits,Lebanon,1kg,32.5,,,32.5,,,Lulu,Active
+2026-06-08,Fruits,Peeled Mandarin,Citrus Fruits,,250g,5.5,,,22.0,,,Lulu,Active
+2026-06-08,Fruits,Pomelo,Citrus Fruits,Thailand,1kg,,12.0,,,12.0,,Rawabi,Active
+2026-06-08,Fruits,Pomelo,Citrus Fruits,China,1.0pc,7.75,,,7750.0,,,Lulu,Active
+2026-06-08,Fruits,Pomelo,Citrus Fruits,South Africa,800g,15.75,,,19.69,,,Lulu,Active
+2026-06-08,Fruits,Coconut Grated,Coconut,India,1.0pc,,3.0,,,3000.0,,Rawabi,Active
+2026-06-08,Fruits,Coconut Jelly,Coconut,Thailand,1kg,,20.0,,,20.0,,Rawabi,Active
+2026-06-08,Fruits,Coconut Shredded,Coconut,India,1.0pc,3.5,,,3500.0,,,Lulu,Active
+2026-06-08,Fruits,Coconut Whole,Coconut,India,1.0pc,3.25,,,3250.0,,,Lulu,Active
+2026-06-08,Fruits,Fresh Coconut (By Air),Coconut,India,,,,7.0,,,,,Active
+2026-06-08,Fruits,Fresh Cut Coconut,Coconut,,200g,8.0,,,40.0,,,Lulu,Active
+2026-06-08,Fruits,King Coconut,Coconut,,1.0pc,19.5,,,19500.0,,,Lulu,Active
+2026-06-08,Fruits,Slice Coconut,Coconut,,1kg,,20.0,,,20.0,,Rawabi,Active
+2026-06-08,Fruits,Slice Coconut,Coconut,,250g,,5.0,,,20.0,,Rawabi,Active
+2026-06-08,Fruits,Tender Coconut With Straw,Coconut,,1.0pc,15.75,,,15750.0,,,Lulu,Active
+2026-06-08,Fruits,Dates Iraq,Fresh Dates,,1kg,7.5,,,7.5,,,Lulu,Active
+2026-06-08,Fruits,Dates Medjoul,Fresh Dates,Jordan,1kg,31.5,,,31.5,,,Lulu,Active
+2026-06-08,Fruits,Datte D’Or Deglet Nour Dates Tunisia,Fresh Dates,,1.0pkt,4.5,,,4500.0,,,Lulu,Active
+2026-06-08,Fruits,Deglet Noor Dates,Fresh Dates,,1kg,17.5,,,17.5,,,Lulu,Active
+2026-06-08,Fruits,Khudri Dates,Fresh Dates,,500g,15.75,,,31.5,,,Lulu,Active
+2026-06-08,Fruits,Khudri Dates,Fresh Dates,,1.0pkt,24.0,,,24000.0,,,Lulu,Active
+2026-06-08,Fruits,Majdoul Dates,Fresh Dates,,500g,16.75,,,33.5,,,Lulu,Active
+2026-06-08,Fruits,Qdates Ajwa Dates,Fresh Dates,,400g,24.5,,,61.25,,,Lulu,Active
+2026-06-08,Fruits,Qdates Mabroom Dates,Fresh Dates,,400g,24.0,,,60.0,,,Lulu,Active
+2026-06-08,Fruits,Qdates Safawi Dates,Fresh Dates,,400g,17.0,,,42.5,,,Lulu,Active
+2026-06-08,Fruits,Qdates Sufri Dates,Fresh Dates,,400g,16.0,,,40.0,,,Lulu,Active
+2026-06-08,Fruits,Qdates Sufri Dates,Fresh Dates,,800g,32.0,,,40.0,,,Lulu,Active
+2026-06-08,Fruits,Qdates Suqai Dates,Fresh Dates,,400g,16.0,,,40.0,,,Lulu,Active
+2026-06-08,Fruits,Sukkari Dates,Fresh Dates,,500g,16.5,,,33.0,,,Lulu,Active
+2026-06-08,Fruits,Sukkari Dates,Fresh Dates,Oman,900g,26.5,,,29.44,,,Lulu,Active
+2026-06-08,Fruits,Chest Nut,Fresh Nuts,China,1kg,,11.5,,,11.5,,Rawabi,Active
+2026-06-08,Fruits,Fresh Almond Medium,Fresh Nuts,,400g,10.0,,,25.0,,,Lulu,Active
+2026-06-08,Fruits,Mushroom Chestnut -,Fresh Nuts,Holland,,,,15.5,,,,,Active
+2026-06-08,Fruits,Grape Black Packet,Grapes,India,,,7.75,,,,,,Active
+2026-06-08,Fruits,Grape Red,Grapes,Australia,1kg,,45.75,,,45.75,,Rawabi,Active
+2026-06-08,Fruits,Grape White Packet,Grapes,Egypt,1kg,,17.75,,,17.75,,Rawabi,Active
+2026-06-08,Fruits,Grapes Black,Grapes,India,500g,8.75,,,17.5,,,Lulu,Active
+2026-06-08,Fruits,Grapes Black,Grapes,Australia,1kg,21.5,,,21.5,,,Lulu,Active
+2026-06-08,Fruits,Grapes Black -,Grapes,India,400g,8.5,,,21.25,,,Lulu,Active
+2026-06-08,Fruits,Grapes Red -Packet,Grapes,India,,,8.5,,,,,,Active
+2026-06-08,Fruits,Grapes Red Crimson,Grapes,Australia,500g,13.5,,,27.0,,,Lulu,Active
+2026-06-08,Fruits,Grapes Red Globe,Grapes,South Africa,500g,10.0,,,20.0,,,Lulu,Active
+2026-06-08,Fruits,Grapes White,Grapes,Australia,1kg,,54.0,,,54.0,,Rawabi,Active
+2026-06-08,Fruits,Grapes White,Grapes,India,1kg,,14.5,,,14.5,,Rawabi,Active
+2026-06-08,Fruits,Grapes White,Grapes,Australia,500g,,27.0,,,54.0,,Rawabi,Active
+2026-06-08,Fruits,Grapes White,Grapes,Usa,500g,26.25,,,52.5,,,Lulu,Active
+2026-06-08,Fruits,Grapes White,Grapes,Egypt,500g,9.5,,,19.0,,,Lulu,Active
+2026-06-08,Fruits,Grapes White -Packet,Grapes,India,,,6.0,,,,,,Active
+2026-06-08,Fruits,Green Banana,Green Banana,Uganda,1kg,,18.5,,,18.5,,Rawabi,Active
+2026-06-08,Fruits,Green Banana,Green Banana,India,500g,6.75,,,13.5,,,Lulu,Active
+2026-06-08,Fruits,Green Mango,Green Mango,India,500g,10.0,,,20.0,,,Lulu,Active
+2026-06-08,Fruits,Peeled Jackfruit Packet,Jackfruit,India,,,7.5,,,,,,Active
+2026-06-08,Fruits,Fresh Cut Kiwi Fruit,Kiwi,,250g,10.75,,,43.0,,,Lulu,Active
+2026-06-08,Fruits,Kiwi Gold,Kiwi,South Africa,500g,19.75,,,39.5,,,Lulu,Active
+2026-06-08,Fruits,Kiwi Gold New Zealand,Kiwi,,500g,28.25,,,56.5,,,Lulu,Active
+2026-06-08,Fruits,Banganappali Mango,Mangoes,,1kg,23.5,,,23.5,,,Lulu,Active
+2026-06-08,Fruits,Hola Mangosteen,Mangoes,India,500g,14.75,,,29.5,,,Lulu,Active
+2026-06-08,Fruits,Indian Mango,Mangoes,India,1kg,22.75,,,22.75,,,Lulu,Active
+2026-06-08,Fruits,Mango,Mangoes,,2.0pcs,29.75,,,14875.0,,,Lulu,Active
+2026-06-08,Fruits,Mango,Mangoes,Vietnam,1kg,52.75,,,52.75,,,Lulu,Active
+2026-06-08,Fruits,Mango Alphonsa,Mangoes,India,1kg,,14.75,,,14.75,,Rawabi,Active
+2026-06-08,Fruits,Mango Alphonso,Mangoes,,1kg,16.5,,,16.5,,,Lulu,Active
+2026-06-08,Fruits,Mango Alphonso Cartoon,Mangoes,India,,,39.75,,,,,,Active
+2026-06-08,Fruits,Mango Badami,Mangoes,,1kg,16.75,,,16.75,,,Lulu,Active
+2026-06-08,Fruits,Mango Choco Dip,Mangoes,,250g,20.0,,,80.0,,,Lulu,Active
+2026-06-08,Fruits,Mango Colombia-Box,Mangoes,,,,115.0,,,,,,Active
+2026-06-08,Fruits,Mango Gedong Indonesia,Mangoes,,1kg,36.75,,,36.75,,,Lulu,Active
+2026-06-08,Fruits,Mango Ginger,Mangoes,India,200g,5.0,,,25.0,,,Lulu,Active
+2026-06-08,Fruits,Mango Green,Mangoes,India,1kg,,17.75,,,17.75,,Rawabi,Active
+2026-06-08,Fruits,Mango Himapasanth,Mangoes,,1kg,26.75,,,26.75,,,Lulu,Active
+2026-06-08,Fruits,Mango Kalbathoor,Mangoes,,1kg,9.5,,,9.5,,,Lulu,Active
+2026-06-08,Fruits,Mango Kesar,Mangoes,,1kg,14.75,,,14.75,,,Lulu,Active
+2026-06-08,Fruits,Mango Long,Mangoes,Kenya,1kg,26.5,,,26.5,,,Lulu,Active
+2026-06-08,Fruits,Mango Malgova,Mangoes,,1kg,21.5,,,21.5,,,Lulu,Active
+2026-06-08,Fruits,Mango Malika,Mangoes,,1kg,22.5,,,22.5,,,Lulu,Active
+2026-06-08,Fruits,Mango Mallika,Mangoes,India,1kg,,18.75,,,18.75,,Rawabi,Active
+2026-06-08,Fruits,Mango Neelam,Mangoes,,1kg,22.75,,,22.75,,,Lulu,Active
+2026-06-08,Fruits,Mango Rajapuri,Mangoes,,1kg,13.5,,,13.5,,,Lulu,Active
+2026-06-08,Fruits,Mango Sindhooram,Mangoes,India,1kg,,17.75,,,17.75,,Rawabi,Active
+2026-06-08,Fruits,Mango Sindhooram Cartoon,Mangoes,India,,,38.0,,,,,,Active
+2026-06-08,Fruits,Mango Sliced,Mangoes,,250g,11.25,,,45.0,,,Lulu,Active
+2026-06-08,Fruits,Mango Thottapuri,Mangoes,,1kg,18.75,,,18.75,,,Lulu,Active
+2026-06-08,Fruits,Mango Yemen,Mangoes,,1kg,13.75,,,13.75,,,Lulu,Active
+2026-06-08,Fruits,Mango Yemen Cartoon,Mangoes,,,,34.0,,,,,,Active
+2026-06-08,Fruits,Mangoes Round,Mangoes,Kenya,1kg,26.5,,,26.5,,,Lulu,Active
+2026-06-08,Fruits,Mangosteen,Mangoes,,450g,26.5,,,58.89,,,Lulu,Active
+2026-06-08,Fruits,Mangosteen,Mangoes,,1.0pkt,29.5,,,29500.0,,,Lulu,Active
+2026-06-08,Fruits,Mangosteen Packet,Mangoes,Thailand,,,27.0,,,,,,Active
+2026-06-08,Fruits,Sindooram Mango,Mangoes,India,1kg,21.5,,,21.5,,,Lulu,Active
+2026-06-08,Fruits,Tjc Mango,Mangoes,Sri Lanka,1kg,36.5,,,36.5,,,Lulu,Active
+2026-06-08,Fruits,Honey Dew Melon,Melons,Oman,2kg,25.5,,,12.75,,,Lulu,Active
+2026-06-08,Fruits,Mixed Melon,Melons,,250g,4.25,,,17.0,,,Lulu,Active
+2026-06-08,Fruits,Rock Melon,Melons,Oman,2kg,23.0,,,11.5,,,Lulu,Active
+2026-06-08,Fruits,Sliced Rock Melon,Melons,,250g,6.0,,,24.0,,,Lulu,Active
+2026-06-08,Fruits,Sliced Rock Melon,Melons,,300g,9.0,,,30.0,,,Lulu,Active
+2026-06-08,Fruits,Sliced Sweet Melon,Melons,,250g,6.25,,,25.0,,,Lulu,Active
+2026-06-08,Fruits,Sliced Water Melon,Melons,,250g,4.5,,,18.0,,,Lulu,Active
+2026-06-08,Fruits,Sliced Water Melon,Melons,,300g,6.0,,,20.0,,,Lulu,Active
+2026-06-08,Fruits,Sweet Melon,Melons,Jordan,1kg,,5.0,,,5.0,,Rawabi,Active
+2026-06-08,Fruits,Sweet Melon,Melons,Oman,1kg,,5.0,,,5.0,,Rawabi,Active
+2026-06-08,Fruits,Sweet Melon,Melons,Oman,1.0pc,7.5,,,7500.0,,,Lulu,Active
+2026-06-08,Fruits,Water Melon,Melons,Australia,1kg,,33.0,,,33.0,,Rawabi,Active
+2026-06-08,Fruits,Water Melon,Melons,Morocco,1kg,,20.0,,,20.0,,Rawabi,Active
+2026-06-08,Fruits,Water Melon,Melons,Jordan,1kg,,4.5,,,4.5,,Rawabi,Active
+2026-06-08,Fruits,Watermelon,Melons,Oman,5kg,22.5,,,4.5,,,Lulu,Active
+2026-06-08,Fruits,Nectarine,Nectarine,Australia,1kg,,46.5,,,46.5,,Rawabi,Active
+2026-06-08,Fruits,Nectarine,Nectarine,Jordan,1kg,,24.0,,,24.0,,Rawabi,Active
+2026-06-08,Fruits,Nectarine,Nectarine,Jordan,500g,9.5,,,19.0,,,Lulu,Active
+2026-06-08,Fruits,Nectarine,Nectarine,,750g,14.5,,,19.33,,,Lulu,Active
+2026-06-08,Fruits,Nectarine White,Nectarine,Usa,500g,18.5,,,37.0,,,Lulu,Active
+2026-06-08,Fruits,Dragon Fruit,Other Fruits,Vietnam,1kg,,25.5,,,25.5,,Rawabi,Active
+2026-06-08,Fruits,Exotic Fruit Platter,Other Fruits,,,42.0,,,,,,,Active
+2026-06-08,Fruits,Fresh Cut Dragon Fruit,Other Fruits,,250g,17.5,,,70.0,,,Lulu,Active
+2026-06-08,Fruits,Fresh Cut Kaka Fruit,Other Fruits,,250g,13.75,,,55.0,,,Lulu,Active
+2026-06-08,Fruits,Jack Fruit -Packet,Other Fruits,Thailand,,,13.5,,,,,,Active
+2026-06-08,Fruits,Longan Fruit,Other Fruits,,1.0pkt,14.5,,,14500.0,,,Lulu,Active
+2026-06-08,Fruits,Longan Fruit,Other Fruits,Vietnam,1.0pkt,10.0,,,10000.0,,,Lulu,Active
+2026-06-08,Fruits,Mixed Fruits,Other Fruits,,250g,11.0,,,44.0,,,Lulu,Active
+2026-06-08,Fruits,Mixed Fruits,Other Fruits,,300g,10.0,,,33.33,,,Lulu,Active
+2026-06-08,Fruits,Passion Fruit Purple Colombia,Other Fruits,,250g,24.25,,,97.0,,,Lulu,Active
+2026-06-08,Fruits,Passionfruit Pte Packet,Other Fruits,Thailand,,,24.0,,,,,,Active
+2026-06-08,Fruits,Special Fruits Cuts,Other Fruits,,250g,20.75,,,83.0,,,Lulu,Active
+2026-06-08,Fruits,Tender Jack Fruit,Other Fruits,India,1kg,18.5,,,18.5,,,Lulu,Active
+2026-06-08,Fruits,Fresh Papaya Cuts,Papaya,,250g,10.75,,,43.0,,,Lulu,Active
+2026-06-08,Fruits,Green Papaya,Papaya,India,1kg,,15.0,,,15.0,,Rawabi,Active
+2026-06-08,Fruits,Green Papaya,Papaya,Sri Lanka,1kg,17.5,,,17.5,,,Lulu,Active
+2026-06-08,Fruits,Green Papaya -,Papaya,,700g,14.0,,,20.0,,,Lulu,Active
+2026-06-08,Fruits,Papaya,Papaya,Thailand,1kg,,46.0,,,46.0,,Rawabi,Active
+2026-06-08,Fruits,Papaya,Papaya,India,1kg,,18.5,,,18.5,,Rawabi,Active
+2026-06-08,Fruits,Papaya -,Papaya,Sri Lanka,900g,17.5,,,19.44,,,Lulu,Active
+2026-06-08,Fruits,Papaya Fruit,Papaya,India,1500g,26.25,,,17.5,,,Lulu,Active
+2026-06-08,Fruits,Peach,Peaches,Australia,1kg,,28.0,,,28.0,,Rawabi,Active
+2026-06-08,Fruits,Peach,Peaches,Australia,500g,,14.0,,,28.0,,Rawabi,Active
+2026-06-08,Fruits,Peach Round Packet,Peaches,Jordan,,,19.75,,,,,,Active
+2026-06-08,Fruits,Peaches,Peaches,Jordan,500g,9.5,,,19.0,,,Lulu,Active
+2026-06-08,Fruits,Peaches,Peaches,Jordan,1.0pkt,17.5,,,17500.0,,,Lulu,Active
+2026-06-08,Fruits,Peaches,Peaches,Lebanon,1.0pkt,22.5,,,22500.0,,,Lulu,Active
+2026-06-08,Fruits,Peaches,Peaches,Egypt,500g,7.25,,,14.5,,,Lulu,Active
+2026-06-08,Fruits,Peaches,Peaches,Spain,500g,18.25,,,36.5,,,Lulu,Active
+2026-06-08,Fruits,Pear Africa,Pears,,1kg,,9.75,,,9.75,,Rawabi,Active
+2026-06-08,Fruits,Pear Rose Africa,Pears,,1kg,,9.75,,,9.75,,Rawabi,Active
+2026-06-08,Fruits,Pears Forelle,Pears,South Africa,500g,5.75,,,11.5,,,Lulu,Active
+2026-06-08,Fruits,Pears Rosemary,Pears,,500g,4.75,,,9.5,,,Lulu,Active
+2026-06-08,Fruits,Prickly Pears,Pears,,1kg,36.5,,,36.5,,,Lulu,Active
+2026-06-08,Fruits,Vermonte Beauty Pears,Pears,South Africa,500g,4.75,,,9.5,,,Lulu,Active
+2026-06-08,Fruits,Fresh Green Plums Box,Plums,,1.0pc,18.5,,,18500.0,,,Lulu,Active
+2026-06-08,Fruits,Hola Java Plum,Plums,,100g,9.5,,,95.0,,,Lulu,Active
+2026-06-08,Fruits,Plums,Plums,,1.0pkt,15.0,,,15000.0,,,Lulu,Active
+2026-06-08,Fruits,Plums Black,Plums,South Africa,1kg,16.75,,,16.75,,,Lulu,Active
+2026-06-08,Fruits,Plums Red,Plums,South Africa,500g,8.5,,,17.0,,,Lulu,Active
+2026-06-08,Fruits,Plums Red Africa,Plums,,1kg,,15.5,,,15.5,,Rawabi,Active
+2026-06-08,Fruits,Plums Syria,Plums,,1.0pkt,13.5,,,13500.0,,,Lulu,Active
+2026-06-08,Fruits,Fresh Pomegranate Seeds,Pomegranates,,250g,15.0,,,60.0,,,Lulu,Active
+2026-06-08,Fruits,Pomegranate,Pomegranates,India,1kg,19.5,21.0,,19.5,21.0,,Lulu,Active
+2026-06-08,Fruits,Pomegranate,Pomegranates,India,500g,,10.5,,,21.0,,Rawabi,Active
+2026-06-08,Fruits,Pomegranate,Pomegranates,Peru,1kg,,26.0,,,26.0,,Rawabi,Active
+2026-06-08,Fruits,Pomegranate (Anar),Pomegranates,South Africa,1kg,19.75,,,19.75,,,Lulu,Active
+2026-06-08,Fruits,Pomegranate Air-Carton,Pomegranates,India,,,33.0,,,,,,Active
+2026-06-08,Vegetables,Asparagus Plate,Asparagus,Thailand,,,10.0,,,,,,Active
+2026-06-08,Vegetables,Baby Asparagus,Asparagus,,1.0pkt,9.5,,,9500.0,,,Lulu,Active
+2026-06-08,Vegetables,Large Asparagus,Asparagus,Thailand,200g,14.0,,,70.0,,,Lulu,Active
+2026-06-08,Vegetables,Beetroot,Beetroot,India,1kg,,18.0,,,18.0,,Rawabi,Active
+2026-06-08,Vegetables,Beetroot,Beetroot,Oman,500g,3.0,,,6.0,,,Lulu,Active
+2026-06-08,Vegetables,Beetroot,Beetroot,Sri Lanka,500g,3.25,,,6.5,,,Lulu,Active
+2026-06-08,Vegetables,Beetroot Cooked,Beetroot,,500g,,,22.0,,,44.0,Family,Active
+2026-06-08,Vegetables,Beetroot Cooked -Packet,Beetroot,Holland,,,15.75,,,,,,Active
+2026-06-08,Vegetables,Broccoli,Cabbage & Broccoli,,,,,9.0,,,,,Active
+2026-06-08,Vegetables,Broccoli,Cabbage & Broccoli,Spain,1kg,,21.0,,,21.0,,Rawabi,Active
+2026-06-08,Vegetables,Broccoli,Cabbage & Broccoli,Holland,1kg,,42.0,,,42.0,,Rawabi,Active
+2026-06-08,Vegetables,Broccoli,Cabbage & Broccoli,Holland,500g,,21.0,,,42.0,,Rawabi,Active
+2026-06-08,Vegetables,Broccoli,Cabbage & Broccoli,Spain,500g,8.75,10.5,,17.5,21.0,,Lulu,Active
+2026-06-08,Vegetables,Broccoli,Cabbage & Broccoli,,400g,22.75,,,56.88,,,Lulu,Active
+2026-06-08,Vegetables,Broccoli,Cabbage & Broccoli,China,500g,11.25,,,22.5,,,Lulu,Active
+2026-06-08,Vegetables,Broccoli Leaves,Cabbage & Broccoli,,500g,22.25,,,44.5,,,Lulu,Active
+2026-06-08,Vegetables,Cabbage,Cabbage & Broccoli,India,,,,8.75,,,,,Active
+2026-06-08,Vegetables,Cabbage,Cabbage & Broccoli,Jordan,1kg,,6.0,,,6.0,,Rawabi,Active
+2026-06-08,Vegetables,Cabbage Flat Doha,Cabbage & Broccoli,,1kg,,4.0,,,4.0,,Rawabi,Active
+2026-06-08,Vegetables,Cabbage Red,Cabbage & Broccoli,Holland,1kg,28.5,,,28.5,,,Lulu,Active
+2026-06-08,Vegetables,Cabbage Sliced,Cabbage & Broccoli,,1kg,,,10.0,,,10.0,Family,Active
+2026-06-08,Vegetables,Cabbage White,Cabbage & Broccoli,,500g,1.5,,,3.0,,,Lulu,Active
+2026-06-08,Vegetables,Cabbage White,Cabbage & Broccoli,Holland,500g,14.25,,,28.5,,,Lulu,Active
+2026-06-08,Vegetables,Cauliflower,Cabbage & Broccoli,,1kg,9.5,,,9.5,,,Lulu,Active
+2026-06-08,Vegetables,Cauliflower,Cabbage & Broccoli,Holland,800g,55.75,,,69.69,,,Lulu,Active
+2026-06-08,Vegetables,Cauliflower Mazra Doha,Cabbage & Broccoli,,1kg,,7.5,,,7.5,,Rawabi,Active
+2026-06-08,Vegetables,Cauliflower Violet,Cabbage & Broccoli,Spain,1kg,,62.0,,,62.0,,Rawabi,Active
+2026-06-08,Vegetables,Farm Fresh Cabbage,Cabbage & Broccoli,,1kg,4.75,,,4.75,,,Lulu,Active
+2026-06-08,Vegetables,Farm Fresh Cauliflower,Cabbage & Broccoli,Qatar,1kg,9.5,,,9.5,,,Lulu,Active
+2026-06-08,Vegetables,Fresh Paksoy Leaves,Cabbage & Broccoli,,500g,5.0,,,10.0,,,Lulu,Active
+2026-06-08,Vegetables,Kohi,Cabbage & Broccoli,Bangladesh,,,,17.0,,,,,Active
+2026-06-08,Vegetables,Kohlrabi,Cabbage & Broccoli,Holland,250g,11.75,,,47.0,,,Lulu,Active
+2026-06-08,Vegetables,Capsicum,Capsicum,Qatar,,,,6.0,,,,,Active
+2026-06-08,Vegetables,Capsicum,Capsicum,Holland,1kg,,41.0,,,41.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum,Capsicum,Holland,500g,,20.5,,,41.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum 4Color (Packet),Capsicum,Holland,,,19.0,,,,,,Active
+2026-06-08,Vegetables,Capsicum Mix Import,Capsicum,Holland,400g,21.5,,,53.75,,,Lulu,Active
+2026-06-08,Vegetables,Capsicum Mix Pkt,Capsicum,Holland,4.0pcs,,,29.0,,,7250.0,Family,Active
+2026-06-08,Vegetables,Capsicum Orange,Capsicum,Holland,,,,11.0,,,,,Active
+2026-06-08,Vegetables,Capsicum Orange,Capsicum,Holland,1kg,,42.0,,,42.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Orange,Capsicum,Holland,500g,22.25,21.0,,44.5,42.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Orange,Capsicum,Oman,1kg,,14.75,,,14.75,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Red,Capsicum,Holland,,,,12.0,,,,,Active
+2026-06-08,Vegetables,Capsicum Red,Capsicum,Holland,1kg,,38.0,,,38.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Red,Capsicum,Holland,500g,,19.0,,,38.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Red,Capsicum,Egypt,500g,6.5,,,13.0,,,Lulu,Active
+2026-06-08,Vegetables,Capsicum Red Doha Premium,Capsicum,,1kg,,15.5,,,15.5,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Red Import,Capsicum,Holland,500g,23.25,,,46.5,,,Lulu,Active
+2026-06-08,Vegetables,Capsicum Snack Orange,Capsicum,,500g,,8.0,,,16.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Snack Red,Capsicum,,500g,,8.0,,,16.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Snack Yellow,Capsicum,,500g,,8.0,,,16.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Yellow,Capsicum,Holland,,,,11.25,,,,,Active
+2026-06-08,Vegetables,Capsicum Yellow,Capsicum,Holland,1kg,,44.0,,,44.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Yellow,Capsicum,Holland,500g,,22.0,,,44.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Yellow,Capsicum,Oman,500g,6.25,,,12.5,,,Lulu,Active
+2026-06-08,Vegetables,Capsicum Yellow Doha Premium,Capsicum,,1kg,,10.0,,,10.0,,Rawabi,Active
+2026-06-08,Vegetables,Capsicum Yellow Import,Capsicum,Holland,500g,22.25,,,44.5,,,Lulu,Active
+2026-06-08,Vegetables,Baby Carrot,Carrots,,1.0pkt,29.5,,,29500.0,,,Lulu,Active
+2026-06-08,Vegetables,Baby Carrot (Packet),Carrots,Usa,,,14.0,,,,,,Active
+2026-06-08,Vegetables,Baby Carrots Peeled,Carrots,Usa,340g,9.75,,,28.68,,,Lulu,Active
+2026-06-08,Vegetables,Carrot,Carrots,Australia,,,,4.75,,,,,Active
+2026-06-08,Vegetables,Carrot,Carrots,Australia,1kg,,9.5,,,9.5,,Rawabi,Active
+2026-06-08,Vegetables,Carrot,Carrots,Australia,500g,,4.75,,,9.5,,Rawabi,Active
+2026-06-08,Vegetables,Carrot,Carrots,China,,,18.5,,,,,,Active
+2026-06-08,Vegetables,Carrots,Carrots,Australia,500g,4.75,,,9.5,,,Lulu,Active
+2026-06-08,Vegetables,Chayote,Chayote,India,1kg,16.75,16.75,,16.75,16.75,,Lulu,Active
+2026-06-08,Vegetables,Chow Chow (Chayote),Chayote,India,,,,8.75,,,,,Active
+2026-06-08,Vegetables,Baby Pepper Mix,Chillies & Spicy,,1.0pkt,28.75,,,28750.0,,,Lulu,Active
+2026-06-08,Vegetables,Broad Chilli,Chillies & Spicy,Sri Lanka,250g,8.5,,,34.0,,,Lulu,Active
+2026-06-08,Vegetables,Chilli,Chillies & Spicy,Uganda,1kg,,19.75,,,19.75,,Rawabi,Active
+2026-06-08,Vegetables,Chilli,Chillies & Spicy,Uganda,250g,,5.0,,,20.0,,Rawabi,Active
+2026-06-08,Vegetables,Chilly Green,Chillies & Spicy,Oman,250g,2.25,,,9.0,,,Lulu,Active
+2026-06-08,Vegetables,Chilly Green (Packet),Chillies & Spicy,Thailand,,,6.5,,,,,,Active
+2026-06-08,Vegetables,Chilly Red,Chillies & Spicy,Holland,,,,24.5,,,,,Active
+2026-06-08,Vegetables,Chilly Red (Packet),Chillies & Spicy,Thailand,,,7.0,,,,,,Active
+2026-06-08,Vegetables,Chilly Round Green,Chillies & Spicy,India,,,,9.5,,,,,Active
+2026-06-08,Vegetables,"Fresh Green Chilli, ,",Chillies & Spicy,Pakistan,250g,3.25,,,13.0,,,Lulu,Active
+2026-06-08,Vegetables,Ginger,Chillies & Spicy,China,,,,2.0,,,,,Active
+2026-06-08,Vegetables,Ginger,Chillies & Spicy,China,1kg,,8.0,,,8.0,,Rawabi,Active
+2026-06-08,Vegetables,Ginger,Chillies & Spicy,India,1kg,,19.75,,,19.75,,Rawabi,Active
+2026-06-08,Vegetables,Ginger,Chillies & Spicy,Uganda,1kg,,24.5,,,24.5,,Rawabi,Active
+2026-06-08,Vegetables,Ginger,Chillies & Spicy,China,250g,2.0,2.0,,8.0,8.0,,Lulu,Active
+2026-06-08,Vegetables,Ginger,Chillies & Spicy,India,250g,,5.0,,,20.0,,Rawabi,Active
+2026-06-08,Vegetables,Ginger,Chillies & Spicy,Uganda,250g,,6.25,,,25.0,,Rawabi,Active
+2026-06-08,Vegetables,Green Chilli,Chillies & Spicy,Uganda,,,,6.0,,,,,Active
+2026-06-08,Vegetables,Green Chilli,Chillies & Spicy,India,,,,4.5,,,,,Active
+2026-06-08,Vegetables,Habanero Hot Peppers,Chillies & Spicy,Usa,250g,38.0,,,152.0,,,Lulu,Active
+2026-06-08,Vegetables,Hot Pepper Mix,Chillies & Spicy,Uganda,1kg,,38.0,,,38.0,,Rawabi,Active
+2026-06-08,Vegetables,Hot Pepper Mix,Chillies & Spicy,Uganda,250g,,9.5,,,38.0,,Rawabi,Active
+2026-06-08,Vegetables,Jalapeno Green,Chillies & Spicy,Holland,1kg,,70.0,,,70.0,,Rawabi,Active
+2026-06-08,Vegetables,Jalapeno Green,Chillies & Spicy,Holland,250g,,17.5,,,70.0,,Rawabi,Active
+2026-06-08,Vegetables,Jalapeno Hot Red Pepper,Chillies & Spicy,Usa,,,,82.0,,,,,Active
+2026-06-08,Vegetables,Jalapeno Red,Chillies & Spicy,Holland,1kg,,65.0,,,65.0,,Rawabi,Active
+2026-06-08,Vegetables,Jalapeno Red,Chillies & Spicy,Holland,250g,,16.25,,,65.0,,Rawabi,Active
+2026-06-08,Vegetables,Mixed Chilli Red & Green Pkt,Chillies & Spicy,,,,,8.0,,,,,Active
+2026-06-08,Vegetables,Red Chilli,Chillies & Spicy,Jordan,500g,9.0,,,18.0,,,Lulu,Active
+2026-06-08,Vegetables,Red Chilli Bird,Chillies & Spicy,Thailand,1.0pkt,7.0,,,7000.0,,,Lulu,Active
+2026-06-08,Vegetables,Red Long Chilli,Chillies & Spicy,Jordan,1kg,,22.0,,,22.0,,Rawabi,Active
+2026-06-08,Vegetables,Ambrosia Salad,Combo Pack,,250g,8.5,,,34.0,,,Lulu,Active
+2026-06-08,Vegetables,Fresh Fruit Basket,Combo Pack,,,,150.0,,,,,,Active
+2026-06-08,Vegetables,Fresh Fruits Basket Small,Combo Pack,,,,130.0,,,,,,Active
+2026-06-08,Vegetables,Fruit Salad,Combo Pack,,250g,5.5,,,22.0,,,Lulu,Active
+2026-06-08,Vegetables,Lulu Fresh And Best Aviyal Mix,Combo Pack,,1kg,17.75,,,17.75,,,Lulu,Active
+2026-06-08,Vegetables,Lulu Sambar Mix,Combo Pack,,1kg,17.75,,,17.75,,,Lulu,Active
+2026-06-08,Vegetables,Mix Fruit Basket-Medium,Combo Pack,,,,250.0,,,,,,Active
+2026-06-08,Vegetables,Mix Fruit Basket-Small,Combo Pack,,,,180.0,,,,,,Active
+2026-06-08,Vegetables,Mixed Salad,Combo Pack,,120g,8.5,,,70.83,,,Lulu,Active
+2026-06-08,Vegetables,Oriental Fruit Salad,Combo Pack,,250g,8.75,,,35.0,,,Lulu,Active
+2026-06-08,Vegetables,Pinakbet Mixed,Combo Pack,,1kg,,,25.0,,,25.0,Family,Active
+2026-06-08,Vegetables,Pineapple Coconut Passionfruit Salad,Combo Pack,,250g,9.0,,,36.0,,,Lulu,Active
+2026-06-08,Vegetables,Sambar Mixed Vegetable,Combo Pack,,,,,10.0,,,,,Active
+2026-06-08,Vegetables,Baby Corn,Corns & Baby Corn,Thailand,125g,,,8.0,,,64.0,Family,Active
+2026-06-08,Vegetables,Baby Corn,Corns & Baby Corn,Thailand,1.0pkt,7.5,,,7500.0,,,Lulu,Active
+2026-06-08,Vegetables,Baby Corn (Packet),Corns & Baby Corn,Thailand,,,7.0,,,,,,Active
+2026-06-08,Vegetables,Fruit'O Snack Boiled Sweet Corn Cob,Corns & Baby Corn,,270g,,,6.0,,,22.22,Family,Active
+2026-06-08,Vegetables,Sweet Corn,Corns & Baby Corn,Jordan,1kg,,7.5,,,7.5,,Rawabi,Active
+2026-06-08,Vegetables,Sweet Corn,Corns & Baby Corn,Jordan,,,,5.0,,,,,Active
+2026-06-08,Vegetables,Sweet Corn Boiled,Corns & Baby Corn,India,1.0pc,,16.0,,,16000.0,,Rawabi,Active
+2026-06-08,Vegetables,Sweet Corn Doha Packet,Corns & Baby Corn,,,,5.5,,,,,,Active
+2026-06-08,Vegetables,Courgette Green,Courgettes & Artichoke,Spain,400g,17.0,,,42.5,,,Lulu,Active
+2026-06-08,Vegetables,Marrow (Koosa),Courgettes & Artichoke,Jordan,500g,2.75,,,5.5,,,Lulu,Active
+2026-06-08,Vegetables,Mini Courgette,Courgettes & Artichoke,South Africa,1.0pkt,28.5,,,28500.0,,,Lulu,Active
+2026-06-08,Vegetables,Zucchini,Courgettes & Artichoke,Jordan,1kg,,5.5,,,5.5,,Rawabi,Active
+2026-06-08,Vegetables,Cucumber,Cucumber,Qatar,,,,2.75,,,,,Active
+2026-06-08,Vegetables,Cucumber,Cucumber,,1kg,3.5,,,3.5,,,Lulu,Active
+2026-06-08,Vegetables,Cucumber,Cucumber,Holland,1kg,37.5,,,37.5,,,Lulu,Active
+2026-06-08,Vegetables,Cucumber Arabia,Cucumber,Saudi,500g,2.0,,,4.0,,,Lulu,Active
+2026-06-08,Vegetables,Cucumber Premium Doha,Cucumber,,1kg,,7.5,,,7.5,,Rawabi,Active
+2026-06-08,Vegetables,Farm Fresh Cucumber,Cucumber,,1kg,5.75,,,5.75,,,Lulu,Active
+2026-06-08,Vegetables,Premium Cucumber,Cucumber,Qatar,1.0pkt,7.5,,,7500.0,,,Lulu,Active
+2026-06-08,Vegetables,Vellary Indian,Cucumber,India,1kg,,,19.0,,,19.0,Family,Active
+2026-06-08,Vegetables,Vellery 1 Piece,Cucumber,India,,21.0,,,,,,,Active
+2026-06-08,Vegetables,Yellow Cucumber,Cucumber,India,1kg,,15.75,,,15.75,,Rawabi,Active
+2026-06-08,Vegetables,Garlic,Garlic,India,,,,12.25,,,,,Active
+2026-06-08,Vegetables,Garlic,Garlic,Egypt,,,,8.0,,,,,Active
+2026-06-08,Vegetables,Garlic,Garlic,China,1kg,,8.0,,,8.0,,Rawabi,Active
+2026-06-08,Vegetables,Garlic,Garlic,India,1kg,,24.75,,,24.75,,Rawabi,Active
+2026-06-08,Vegetables,Garlic,Garlic,China,250g,2.0,2.0,,8.0,8.0,,Lulu,Active
+2026-06-08,Vegetables,Garlic,Garlic,India,250g,,6.25,,,25.0,,Rawabi,Active
+2026-06-08,Vegetables,Garlic,Garlic,India,200g,4.5,,,22.5,,,Lulu,Active
+2026-06-08,Vegetables,Garlic Big,Garlic,China,1.0pkt,10.0,,,10000.0,,,Lulu,Active
+2026-06-08,Vegetables,Garlic Loose,Garlic,,,,,2.0,,,,,Active
+2026-06-08,Vegetables,Garlic Packet Big,Garlic,China,,,10.0,,,,,,Active
+2026-06-08,Vegetables,Garlic Peeled,Garlic,,500g,17.75,,,35.5,,,Lulu,Active
+2026-06-08,Vegetables,Garlic Small,Garlic,China,1.0pkt,5.0,,,5000.0,,,Lulu,Active
+2026-06-08,Vegetables,Garlic Small Pkt ( ),Garlic,China,,,5.0,5.0,,,,,Active
+2026-06-08,Vegetables,Peeled Garlic,Garlic,,250g,,,8.5,,,34.0,Family,Active
+2026-06-08,Vegetables,Peeled Whole Garlic,Garlic,,250g,9.0,,,36.0,,,Lulu,Active
+2026-06-08,Vegetables,Ash Gourd,Gourds,Oman,1.0pc,6.75,,,6750.0,,,Lulu,Active
+2026-06-08,Vegetables,Ash Gourd,Gourds,,1kg,17.5,,,17.5,,,Lulu,Active
+2026-06-08,Vegetables,Ash Gourd(Kumbalam),Gourds,India,,,,17.5,,,,,Active
+2026-06-08,Vegetables,Ashgourd,Gourds,Oman,1kg,,7.5,,,7.5,,Rawabi,Active
+2026-06-08,Vegetables,Bitter Gourd,Gourds,India,1kg,,17.75,,,17.75,,Rawabi,Active
+2026-06-08,Vegetables,Bitter Gourd Green,Gourds,,500g,3.25,,,6.5,,,Lulu,Active
+2026-06-08,Vegetables,Bitter Gourd Green,Gourds,India,500g,10.75,,,21.5,,,Lulu,Active
+2026-06-08,Vegetables,Bottle Gourd Doha,Gourds,,1kg,,7.5,,,7.5,,Rawabi,Active
+2026-06-08,Vegetables,Dhundul,Gourds,Bangladesh,,,,17.0,,,,,Active
+2026-06-08,Vegetables,Ivy Gourd (Kovakka) Indian,Gourds,India,1kg,,15.75,,,15.75,,Rawabi,Active
+2026-06-08,Vegetables,Ivy Gourd (Tindly),Gourds,India,,,,10.0,,,,,Active
+2026-06-08,Vegetables,Parwal,Gourds,Bangladesh,1kg,,16.0,,,16.0,,Rawabi,Active
+2026-06-08,Vegetables,Ridge Gourd,Gourds,India,,,,9.75,,,,,Active
+2026-06-08,Vegetables,Ridge Gourd,Gourds,India,1kg,,17.5,,,17.5,,Rawabi,Active
+2026-06-08,Vegetables,Snake Gourd,Gourds,India,,,,9.0,,,,,Active
+2026-06-08,Vegetables,Snake Gourd,Gourds,India,1kg,,17.0,,,17.0,,Rawabi,Active
+2026-06-08,Vegetables,Snake Gourd,Gourds,India,500g,9.5,,,19.0,,,Lulu,Active
+2026-06-08,Vegetables,Tindly,Gourds,India,250g,4.5,,,18.0,,,Lulu,Active
+2026-06-08,Vegetables,Baby Fennel Africa-Packet,Herbs,,,,22.0,,,,,,Active
+2026-06-08,Vegetables,Basil Leaves-Pc,Herbs,,,,12.0,,,,,,Active
+2026-06-08,Vegetables,Celery,Herbs,Spain,,,,19.0,,,,,Active
+2026-06-08,Vegetables,Celery Stick,Herbs,Spain,1kg,,32.0,,,32.0,,Rawabi,Active
+2026-06-08,Vegetables,Celery Stick,Herbs,Spain,250g,,8.0,,,32.0,,Rawabi,Active
+2026-06-08,Vegetables,Coriander (Ksa),Herbs,,,,,3.25,,,,,Active
+2026-06-08,Vegetables,Coriander Leaves Arabia,Herbs,Saudi,100g,1.5,,,15.0,,,Lulu,Active
+2026-06-08,Vegetables,Curry Leaves,Herbs,,,,3.0,,,,,,Active
+2026-06-08,Vegetables,Curry Leaves 1 Bunch,Herbs,,,4.5,,,,,,,Active
+2026-06-08,Vegetables,Dill Leaves Arabia,Herbs,Saudi,200g,2.75,,,13.75,,,Lulu,Active
+2026-06-08,Vegetables,Fennel,Herbs,,,,,22.5,,,,,Active
+2026-06-08,Vegetables,Fennel,Herbs,Morocco,250g,13.25,,,53.0,,,Lulu,Active
+2026-06-08,Vegetables,Granadilla Fruit Colombia,Herbs,,1kg,,88.0,,,88.0,,Rawabi,Active
+2026-06-08,Vegetables,Granadilla Fruit Colombia,Herbs,,250g,,22.0,,,88.0,,Rawabi,Active
+2026-06-08,Vegetables,Green Basil ( ),Herbs,Kenya,,,,16.0,,,,,Active
+2026-06-08,Vegetables,Kalangal,Herbs,Thailand,250g,11.5,,,46.0,,,Lulu,Active
+2026-06-08,Vegetables,Lemon Grass,Herbs,,,,,5.5,,,,,Active
+2026-06-08,Vegetables,Lemon Grass,Herbs,Thailand,100g,4.75,,,47.5,,,Lulu,Active
+2026-06-08,Vegetables,Mini Fennel,Herbs,Holland,1.0pkt,29.5,,,29500.0,,,Lulu,Active
+2026-06-08,Vegetables,Mint Leaves,Herbs,Saudi,100g,1.5,,,15.0,,,Lulu,Active
+2026-06-08,Vegetables,Pandan Leaves,Herbs,,100g,4.25,,,42.5,,,Lulu,Active
+2026-06-08,Vegetables,Parsely (Ksa),Herbs,,,,,10.0,,,,,Active
+2026-06-08,Vegetables,Parsley Leaves,Herbs,Saudi,100g,1.0,,,10.0,,,Lulu,Active
+2026-06-08,Vegetables,Rosemary,Herbs,Kenya,1.0pc,,10.0,,,10000.0,,Rawabi,Active
+2026-06-08,Vegetables,Thyme Green Thin,Herbs,,,,,16.0,,,,,Active
+2026-06-08,Vegetables,Bhindi (Lady'S Finger),Lady Finger,India,,,,9.0,,,,,Active
+2026-06-08,Vegetables,Lady Finger,Lady Finger,India,1kg,,16.75,,,16.75,,Rawabi,Active
+2026-06-08,Vegetables,Okra,Lady Finger,,500g,9.25,,,18.5,,,Lulu,Active
+2026-06-08,Vegetables,Arugula (Jerjir)Leaves Doha,Leafy Vegetables,,500g,,3.75,,,7.5,,Rawabi,Active
+2026-06-08,Vegetables,Arugula (Jerjir)Leaves Doha 1 Bunch,Leafy Vegetables,,,,7.5,,,,,,Active
+2026-06-08,Vegetables,Baby Gem Lettuce,Leafy Vegetables,Spain,1kg,,29.0,,,29.0,,Rawabi,Active
+2026-06-08,Vegetables,Baby Gem Lettuce,Leafy Vegetables,Spain,250g,,7.25,,,29.0,,Rawabi,Active
+2026-06-08,Vegetables,Baby Rocket -Packet,Leafy Vegetables,Italy,,,10.5,,,,,,Active
+2026-06-08,Vegetables,Baby Spinach,Leafy Vegetables,Italy,125g,,,14.0,,,112.0,Family,Active
+2026-06-08,Vegetables,Baby Spinach Leaves -Packet,Leafy Vegetables,Italy,,,10.5,,,,,,Active
+2026-06-08,Vegetables,Cheera Leaves,Leafy Vegetables,Qatar,100g,0.75,,,7.5,,,Lulu,Active
+2026-06-08,Vegetables,"Fresh Lettuce Romaine, ,",Leafy Vegetables,Jordan,500g,3.25,,,6.5,,,Lulu,Active
+2026-06-08,Vegetables,Iceberg Lettuce,Leafy Vegetables,Jordan,500g,3.5,,,7.0,,,Lulu,Active
+2026-06-08,Vegetables,Jerjer Leaves Arabia,Leafy Vegetables,Saudi,150g,2.0,,,13.33,,,Lulu,Active
+2026-06-08,Vegetables,Kale Leaves,Leafy Vegetables,Holland,1kg,,57.0,,,57.0,,Rawabi,Active
+2026-06-08,Vegetables,Kale Leaves,Leafy Vegetables,Holland,250g,,14.25,,,57.0,,Rawabi,Active
+2026-06-08,Vegetables,Kangkong Doha,Leafy Vegetables,,1.0pc,,7.0,,,7000.0,,Rawabi,Active
+2026-06-08,Vegetables,Kangon Leaves,Leafy Vegetables,,100g,5.25,,,52.5,,,Lulu,Active
+2026-06-08,Vegetables,Lettuce,Leafy Vegetables,Lebanon,,,,8.75,,,,,Active
+2026-06-08,Vegetables,Lettuce Bionda/ Rossa Mix,Leafy Vegetables,,125g,,,14.0,,,112.0,Family,Active
+2026-06-08,Vegetables,Lettuce Boston Soft,Leafy Vegetables,Holland,,,,16.25,,,,,Active
+2026-06-08,Vegetables,Lettuce Gem Tray,Leafy Vegetables,Spain,,,,17.0,,,,,Active
+2026-06-08,Vegetables,Lettuce Ice Berge,Leafy Vegetables,Spain,1kg,,38.0,,,38.0,,Rawabi,Active
+2026-06-08,Vegetables,Lettuce Ice Berge,Leafy Vegetables,Spain,250g,,9.5,,,38.0,,Rawabi,Active
+2026-06-08,Vegetables,Lettuce Iceberg,Leafy Vegetables,,,,,24.0,,,,,Active
+2026-06-08,Vegetables,Lettuce Iceberg,Leafy Vegetables,Egypt,1kg,,14.75,,,14.75,,Rawabi,Active
+2026-06-08,Vegetables,Lettuce Iceberg,Leafy Vegetables,Spain,400g,17.0,,,42.5,,,Lulu,Active
+2026-06-08,Vegetables,Lettuce Iceberg,Leafy Vegetables,Usa,500g,21.25,,,42.5,,,Lulu,Active
+2026-06-08,Vegetables,Lettuce Lollo Rossa,Leafy Vegetables,,,,,18.75,,,,,Active
+2026-06-08,Vegetables,Mini Gem Lettuce,Leafy Vegetables,Holland,1.0pkt,36.5,,,36500.0,,,Lulu,Active
+2026-06-08,Vegetables,Molokhia Doha,Leafy Vegetables,,,,8.0,,,,,,Active
+2026-06-08,Vegetables,Molokhia Doha,Leafy Vegetables,,250g,,2.0,,,8.0,,Rawabi,Active
+2026-06-08,Vegetables,Mustard Leaves,Leafy Vegetables,Qatar,100g,0.75,,,7.5,,,Lulu,Active
+2026-06-08,Vegetables,Pechay Leaves Doha,Leafy Vegetables,,1.0pc,,6.5,,,6500.0,,Rawabi,Active
+2026-06-08,Vegetables,Red Chard Mix,Leafy Vegetables,Italy,125g,,,10.0,,,80.0,Family,Active
+2026-06-08,Vegetables,Red Spinach Doha 1 Bunch,Leafy Vegetables,,,,7.0,,,,,,Active
+2026-06-08,Vegetables,Rocket Leaves,Leafy Vegetables,Italy,125g,,,14.0,,,112.0,Family,Active
+2026-06-08,Vegetables,Ruwaith Leaves Doha,Leafy Vegetables,,1.0pc,,6.5,,,6500.0,,Rawabi,Active
+2026-06-08,Vegetables,Leeks,Leeks/Spring Onions,Holland,,,,9.5,,,,,Active
+2026-06-08,Vegetables,Leeks,Leeks/Spring Onions,Holland,1kg,,28.0,,,28.0,,Rawabi,Active
+2026-06-08,Vegetables,Leeks,Leeks/Spring Onions,Holland,250g,,7.0,,,28.0,,Rawabi,Active
+2026-06-08,Vegetables,Leeks,Leeks/Spring Onions,Holland,1.0pc,14.75,,,14750.0,,,Lulu,Active
+2026-06-08,Vegetables,Mini Leeks,Leeks/Spring Onions,,1.0pc,26.5,,,26500.0,,,Lulu,Active
+2026-06-08,Vegetables,Agrico Mushroom White Bottom,Mushrooms,Qatar,250g,,,7.0,,,28.0,Family,Active
+2026-06-08,Vegetables,Agrico Mushroom White Doha Packet,Mushrooms,,,,7.0,,,,,,Active
+2026-06-08,Vegetables,Mushroom Brown Doha-Packet,Mushrooms,,,,8.5,,,,,,Active
+2026-06-08,Vegetables,Mushroom Shimeji,Mushrooms,Thailand,1.0pkt,14.5,,,14500.0,,,Lulu,Active
+2026-06-08,Vegetables,Mushroom Slice,Mushrooms,Qatar,,,,8.5,,,,,Active
+2026-06-08,Vegetables,Mushroom Slice Doha-Packet,Mushrooms,,,,8.5,,,,,,Active
+2026-06-08,Vegetables,Mushroom White Doha-Packet,Mushrooms,,,,7.0,,,,,,Active
+2026-06-08,Vegetables,Mushrooms Portobello,Mushrooms,,,,,19.5,,,,,Active
+2026-06-08,Vegetables,Safwa Mushroom Oyster,Mushrooms,Qatar,250g,8.5,,,34.0,,,Lulu,Active
+2026-06-08,Vegetables,Shimenji White Mushroom,Mushrooms,,150g,,,12.0,,,80.0,Family,Active
+2026-06-08,Vegetables,Shitake Mushroom,Mushrooms,Holland,150g,13.0,,,86.67,,,Lulu,Active
+2026-06-08,Vegetables,Onion,Onion,India,1kg,4.5,,,4.5,,,Lulu,Active
+2026-06-08,Vegetables,Onion Big,Onion,India,1kg,,4.5,,,4.5,,Rawabi,Active
+2026-06-08,Vegetables,Onion Brown,Onion,,1kg,13.5,,,13.5,,,Lulu,Active
+2026-06-08,Vegetables,Onion Medium Bag,Onion,India,,,19.0,,,,,,Active
+2026-06-08,Vegetables,Onion Small,Onion,India,,,,5.0,,,,,Active
+2026-06-08,Vegetables,Onion Small,Onion,India,1kg,,19.0,,,19.0,,Rawabi,Active
+2026-06-08,Vegetables,Onion Small Bag,Onion,India,,,14.5,,,,,,Active
+2026-06-08,Vegetables,Onion White,Onion,Spain,1kg,12.5,,,12.5,,,Lulu,Active
+2026-06-08,Vegetables,Onion Yemen,Onion,,,,,4.5,,,,,Active
+2026-06-08,Vegetables,Onion Yemen,Onion,,1kg,4.5,,,4.5,,,Lulu,Active
+2026-06-08,Vegetables,Small Onion,Onion,India,250g,4.5,,,18.0,,,Lulu,Active
+2026-06-08,Vegetables,White Onion,Onion,,600g,7.5,,,12.5,,,Lulu,Active
+2026-06-08,Vegetables,Agrico Organic Tomato,Organic Vegetables,Qatar,500g,7.5,,,15.0,,,Lulu,Active
+2026-06-08,Vegetables,Organic Cucumber,Organic Vegetables,,500g,9.5,,,19.0,,,Lulu,Active
+2026-06-08,Vegetables,Organic Tomato Cherry,Organic Vegetables,Qatar,250g,7.5,,,30.0,,,Lulu,Active
+2026-06-08,Vegetables,Aloe Vera,Other Vegetables,,,,,30.0,,,,,Active
+2026-06-08,Vegetables,Aloe Vera Leaves Indonesia,Other Vegetables,,1.0pc,8.75,,,8750.0,,,Lulu,Active
+2026-06-08,Vegetables,Amla (Gooseberry),Other Vegetables,India,,,,10.75,,,,,Active
+2026-06-08,Vegetables,Bagal,Other Vegetables,,,,,5.0,,,,,Active
+2026-06-08,Vegetables,Chinese Potato (Koorka),Other Vegetables,India,500g,8.5,,,17.0,,,Lulu,Active
+2026-06-08,Vegetables,Drumstick,Other Vegetables,India,,,,7.5,,,,,Active
+2026-06-08,Vegetables,Drumstick,Other Vegetables,India,1kg,,18.0,,,18.0,,Rawabi,Active
+2026-06-08,Vegetables,Drumstick,Other Vegetables,India,200g,3.5,,,17.5,,,Lulu,Active
+2026-06-08,Vegetables,Drumstick Leaves 1 Bunch,Other Vegetables,,,5.75,,,,,,,Active
+2026-06-08,Vegetables,Drumstick Leaves Pkt ( ),Other Vegetables,India,150g,,,5.5,,,36.67,Family,Active
+2026-06-08,Vegetables,Eggplant,Other Vegetables,Holland,,,,28.0,,,,,Active
+2026-06-08,Vegetables,Eggplant Mazra Doha,Other Vegetables,,1kg,,7.0,,,7.0,,Rawabi,Active
+2026-06-08,Vegetables,Fig,Other Vegetables,Turkey,1kg,,46.0,,,46.0,,Rawabi,Active
+2026-06-08,Vegetables,Fresh Black Tamarind (Kudam Puli/ Brindle Berry/Garcinia Cambogia),Other Vegetables,,250g,7.0,,,28.0,,,Lulu,Active
+2026-06-08,Vegetables,Govar,Other Vegetables,India,1kg,,17.5,,,17.5,,Rawabi,Active
+2026-06-08,Vegetables,Guava,Other Vegetables,India,1kg,,22.0,,,22.0,,Rawabi,Active
+2026-06-08,Vegetables,Guava -Packet,Other Vegetables,Thailand,,,32.0,,,,,,Active
+2026-06-08,Vegetables,Guava Red,Other Vegetables,Thailand,1kg,,42.0,,,42.0,,Rawabi,Active
+2026-06-08,Vegetables,Guava Red -Packet,Other Vegetables,Thailand,,,34.0,,,,,,Active
+2026-06-08,Vegetables,Lollo Bioanda,Other Vegetables,Holland,1kg,,60.0,,,60.0,,Rawabi,Active
+2026-06-08,Vegetables,Lollo Bioanda,Other Vegetables,Holland,250g,,15.0,,,60.0,,Rawabi,Active
+2026-06-08,Vegetables,Longan -Packet,Other Vegetables,Thailand,,,24.0,,,,,,Active
+2026-06-08,Vegetables,Palak Leaves Doha,Other Vegetables,,1.0pc,,5.0,,,5000.0,,Rawabi,Active
+2026-06-08,Vegetables,Rambutan,Other Vegetables,India,1.0pkt,14.75,,,14750.0,,,Lulu,Active
+2026-06-08,Vegetables,Rambutan -Packet,Other Vegetables,Thailand,,,25.0,,,,,,Active
+2026-06-08,Vegetables,Raw Peanuts,Other Vegetables,India,250g,4.25,,,17.0,,,Lulu,Active
+2026-06-08,Vegetables,Rocca Leaves,Other Vegetables,,120g,8.5,,,70.83,,,Lulu,Active
+2026-06-08,Vegetables,Soursop,Other Vegetables,Sri Lanka,1500g,39.0,,,26.0,,,Lulu,Active
+2026-06-08,Vegetables,Sugarcane,Other Vegetables,,1kg,21.5,,,21.5,,,Lulu,Active
+2026-06-08,Vegetables,Sweet Tamarind,Other Vegetables,Thailand,450g,26.5,,,58.89,,,Lulu,Active
+2026-06-08,Vegetables,Tamarind -Box,Other Vegetables,Thailand,,,23.0,,,,,,Active
+2026-06-08,Vegetables,Beans,Peas & Beans,India,1kg,,19.0,,,19.0,,Rawabi,Active
+2026-06-08,Vegetables,Cluster Beans,Peas & Beans,India,,,,9.5,,,,,Active
+2026-06-08,Vegetables,Cluster Beans,Peas & Beans,India,250g,4.75,,,19.0,,,Lulu,Active
+2026-06-08,Vegetables,Fine Beans + Snow Peas,Peas & Beans,Kenya,1.0pkt,12.5,,,12500.0,,,Lulu,Active
+2026-06-08,Vegetables,French Beans,Peas & Beans,India,500g,11.25,,,22.5,,,Lulu,Active
+2026-06-08,Vegetables,Green Beans,Peas & Beans,,500g,23.25,,,46.5,,,Lulu,Active
+2026-06-08,Vegetables,Long Beans Mazra Doha,Peas & Beans,,1kg,,15.75,,,15.75,,Rawabi,Active
+2026-06-08,Vegetables,Mutter,Peas & Beans,Pakistan,1kg,,22.5,,,22.5,,Rawabi,Active
+2026-06-08,Vegetables,Peas Mangetout/Snow/Podded Peas,Peas & Beans,,250g,,,14.0,,,56.0,Family,Active
+2026-06-08,Vegetables,Snow Peas,Peas & Beans,Kenya,250g,9.0,,,36.0,,,Lulu,Active
+2026-06-08,Vegetables,Sugar Snaps,Peas & Beans,Kenya,250g,9.0,,,36.0,,,Lulu,Active
+2026-06-08,Vegetables,Aravi Big,Potatoes & Starchy Vegetables,India,,,,8.75,,,,,Active
+2026-06-08,Vegetables,Big Aravi,Potatoes & Starchy Vegetables,India,500g,8.5,,,17.0,,,Lulu,Active
+2026-06-08,Vegetables,Big Suran (Yam),Potatoes & Starchy Vegetables,India,1kg,9.75,,,9.75,,,Lulu,Active
+2026-06-08,Vegetables,Fresh Big Aravi Taro Root,Potatoes & Starchy Vegetables,Sri Lanka,500g,9.75,,,19.5,,,Lulu,Active
+2026-06-08,Vegetables,Kachil,Potatoes & Starchy Vegetables,Sri Lanka,250g,5.75,,,23.0,,,Lulu,Active
+2026-06-08,Vegetables,Lothi,Potatoes & Starchy Vegetables,,1kg,,16.0,,,16.0,,Rawabi,Active
+2026-06-08,Vegetables,Potato,Potatoes & Starchy Vegetables,,,,,3.0,,,,,Active
+2026-06-08,Vegetables,Potato,Potatoes & Starchy Vegetables,Bangladesh,1kg,,16.0,,,16.0,,Rawabi,Active
+2026-06-08,Vegetables,Potato,Potatoes & Starchy Vegetables,Saudi,1kg,3.5,,,3.5,,,Lulu,Active
+2026-06-08,Vegetables,Potato,Potatoes & Starchy Vegetables,Egypt,1kg,3.0,,,3.0,,,Lulu,Active
+2026-06-08,Vegetables,Potato Bag,Potatoes & Starchy Vegetables,Saudi,1kg,,15.0,,,15.0,,Rawabi,Active
+2026-06-08,Vegetables,Potato Idaho,Potatoes & Starchy Vegetables,,1kg,24.5,,,24.5,,,Lulu,Active
+2026-06-08,Vegetables,Potatoes White Chat Small,Potatoes & Starchy Vegetables,Australia,,,,28.0,,,,,Active
+2026-06-08,Vegetables,Small Aravi,Potatoes & Starchy Vegetables,India,600g,4.5,,,7.5,,,Lulu,Active
+2026-06-08,Vegetables,Small Red Potato,Potatoes & Starchy Vegetables,,1kg,24.5,,,24.5,,,Lulu,Active
+2026-06-08,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,India,,,,8.75,,,,,Active
+2026-06-08,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,Usa,,,,16.0,,,,,Active
+2026-06-08,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,Bangladesh,,,,17.0,,,,,Active
+2026-06-08,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,Australia,1kg,,36.0,,,36.0,,Rawabi,Active
+2026-06-08,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,Egypt,1kg,,5.0,,,5.0,,Rawabi,Active
+2026-06-08,Vegetables,Sweet Potato By Air,Potatoes & Starchy Vegetables,Uganda,1kg,,18.5,,,18.5,,Rawabi,Active
+2026-06-08,Vegetables,Tapioca,Potatoes & Starchy Vegetables,Sri Lanka,1kg,16.5,14.75,,16.5,14.75,,Rawabi,Active
+2026-06-08,Vegetables,Tapioca,Potatoes & Starchy Vegetables,India,1kg,16.5,,,16.5,,,Lulu,Active
+2026-06-08,Vegetables,Taro Root,Potatoes & Starchy Vegetables,,,,,53.0,,,,,Active
+2026-06-08,Vegetables,Tomyam Mix,Potatoes & Starchy Vegetables,Thailand,1.0pkt,16.75,,,16750.0,,,Lulu,Active
+2026-06-08,Vegetables,Yam Indian,Potatoes & Starchy Vegetables,India,,,,6.5,,,,,Active
+2026-06-08,Vegetables,Butternut Pumpkin,Pumpkin,Oman,1kg,,9.75,,,9.75,,Rawabi,Active
+2026-06-08,Vegetables,Disco Pumpkin,Pumpkin,India,1kg,,11.5,,,11.5,,Rawabi,Active
+2026-06-08,Vegetables,Pumpkin Doha,Pumpkin,,1kg,,5.0,,,5.0,,Rawabi,Active
+2026-06-08,Vegetables,Pumpkin Mathan Green,Pumpkin,India,,,,13.75,,,,,Active
+2026-06-08,Vegetables,Pumpkin Medium,Pumpkin,India,,,,8.75,,,,,Active
+2026-06-08,Vegetables,Red Pumpkin,Pumpkin,,1kg,5.0,,,5.0,,,Lulu,Active
+2026-06-08,Vegetables,Red Pumpkin,Pumpkin,India,1kg,14.75,,,14.75,,,Lulu,Active
+2026-06-08,Vegetables,Red Pumpkin,Pumpkin,Oman,1kg,5.0,,,5.0,,,Lulu,Active
+2026-06-08,Vegetables,White Pumpkin,Pumpkin,Qatar,,,,7.5,,,,,Active
+2026-06-08,Vegetables,White Pumpkin,Pumpkin,Qatar,500g,3.5,,,7.0,,,Lulu,Active
+2026-06-08,Vegetables,Radish Red -Packet,Raddish,Holland,,,5.5,,,,,,Active
+2026-06-08,Vegetables,Red Radish,Raddish,Holland,1kg,39.5,33.5,37.0,39.5,33.5,37.0,Rawabi,Active
+2026-06-08,Vegetables,Red Radish,Raddish,Holland,125g,7.5,,,60.0,,,Lulu,Active
+2026-06-08,Vegetables,Red Radish Poly Bag,Raddish,,125g,,,6.5,,,52.0,Family,Active
+2026-06-08,Vegetables,Peeled Shallot Packet,Shallots,India,,,7.0,,,,,,Active
+2026-06-08,Vegetables,Shallots,Shallots,,250g,12.5,,,50.0,,,Lulu,Active
+2026-06-08,Vegetables,Beans Sprout Local,Sprouts,,300g,6.0,,,20.0,,,Lulu,Active
+2026-06-08,Vegetables,Brussel Sprouts,Sprouts,Holland,500g,26.5,,,53.0,,,Lulu,Active
+2026-06-08,Vegetables,Brussels Sprouts Netherland,Sprouts,,1kg,,49.0,,,49.0,,Rawabi,Active
+2026-06-08,Vegetables,Mung Bean Sprouts Pkts,Sprouts,,,,,6.5,,,,,Active
+2026-06-08,Vegetables,Cherry Tomato,Tomato,Holland,250g,16.5,,,66.0,,,Lulu,Active
+2026-06-08,Vegetables,Cherry Tomato,Tomato,Qatar,250g,7.5,,,30.0,,,Lulu,Active
+2026-06-08,Vegetables,Cherry Tomato Bucket,Tomato,Morocco,500g,17.5,,,35.0,,,Lulu,Active
+2026-06-08,Vegetables,Cherry Tomato Bucket,Tomato,Holland,500g,39.0,,,78.0,,,Lulu,Active
+2026-06-08,Vegetables,Farm Fresh Tomato,Tomato,,1kg,6.5,,,6.5,,,Lulu,Active
+2026-06-08,Vegetables,Tomato,Tomato,Jordan,500g,2.5,,,5.0,,,Lulu,Active
+2026-06-08,Vegetables,Tomato Cherry Mix Carnival,Tomato,Holland,,,25.0,,,,,,Active
+2026-06-08,Vegetables,Tomato Cherry Shaker,Tomato,Morocco,250g,8.75,,,35.0,,,Lulu,Active
+2026-06-08,Vegetables,Tomato Cherry Shaker,Tomato,Holland,250g,19.5,,,78.0,,,Lulu,Active
+2026-06-08,Vegetables,Tomato Cherry Shaker,Tomato,Lebanon,225g,12.5,,,55.56,,,Lulu,Active
+2026-06-08,Vegetables,Tomato Cherry Yellow,Tomato,Holland,250g,26.5,,,106.0,,,Lulu,Active
+2026-06-08,Vegetables,Tomato Kumato Belgium,Tomato,,1kg,,52.0,,,52.0,,Rawabi,Active
+2026-06-08,Vegetables,Tomato Mazra Doha,Tomato,,1kg,,8.0,,,8.0,,Rawabi,Active
+2026-06-08,Vegetables,Tomato Sweet Cherry Vine Netherland,Tomato,,,,44.0,,,,,,Active
+2026-06-08,Vegetables,Tomato Syria,Tomato,,1kg,5.0,,,5.0,,,Lulu,Active
+2026-06-08,Vegetables,Tomato Tommys Pkt ( ),Tomato,Spain,500g,,,44.0,,,88.0,Family,Active
+2026-06-08,Vegetables,Tomatoes Cherry Plum,Tomato,,250g,,,20.0,,,80.0,Family,Active
+2026-06-08,Vegetables,Fresh Turmeric,Turmeric,India,200g,5.5,,,27.5,,,Lulu,Active
+2026-06-08,Vegetables,Turmeric,Turmeric,India,,,,3.5,,,,,Active
+2026-06-08,Vegetables,Turmeric,Turmeric,India,1kg,,17.5,,,17.5,,Rawabi,Active
+2026-06-08,Vegetables,Turmeric,Turmeric,India,250g,,4.5,,,18.0,,Rawabi,Active
+2026-06-08,Vegetables,Turmeric,Turmeric,Thailand,1.0pkt,11.5,,,11500.0,,,Lulu,Active
+2026-06-08,Vegetables,Turmeric -Packet,Turmeric,Thailand,,,6.5,,,,,,Active
