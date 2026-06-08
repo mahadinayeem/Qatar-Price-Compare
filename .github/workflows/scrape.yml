@@ -49,6 +49,6 @@ jobs:
           git add frontend/data/products.db
           git diff --staged --quiet || git commit -m "chore: update price data $(date -u '+%Y-%m-%d %H:%M UTC')"
           git pull --rebase origin main
-          git push
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

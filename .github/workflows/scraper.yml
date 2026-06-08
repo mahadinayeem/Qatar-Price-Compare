@@ -65,4 +65,4 @@ jobs:
           if [ -d data/daily ]; then git add data/daily/; fi
           git diff --cached --quiet || git commit -m "chore: daily scrape $(date -u +'%Y-%m-%d')"
           git pull --rebase origin main
-          git push
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
