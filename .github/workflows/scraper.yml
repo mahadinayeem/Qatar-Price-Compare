@@ -11,13 +11,14 @@ on:
 jobs:
   scrape:
     name: Scrape & Export
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 60          # safety: kill if hung
 
     env:
       DATABASE_PATH: ../frontend/data/products.db
       GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       GOOGLE_DRIVE_FOLDER_ID: "1-CTfEXTkOY-YzfHxMt_uO2Ij6VnNIbbO"
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       # 1. Checkout repository
@@ -60,4 +61,5 @@ jobs:
           git add frontend/data/products.db
           if [ -d data/daily ]; then git add data/daily/; fi
           git diff --cached --quiet || git commit -m "chore: daily scrape $(date -u +'%Y-%m-%d')"
+          git pull --rebase origin main
           git push

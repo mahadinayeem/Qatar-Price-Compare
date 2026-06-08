@@ -45,7 +45,6 @@ async def run_all():
     elapsed = time.time() - start
     logger.info(f"=== Scraping complete in {elapsed:.1f}s ===")
 
-    # Export CSV and upload to Google Drive
     if scraper_ok:
         logger.info("=== Starting CSV export & Drive upload ===")
         try:
@@ -54,8 +53,14 @@ async def run_all():
             logger.info("=== CSV export & Drive upload complete ===")
         except Exception as e:
             logger.error(f"CSV export/upload FAILED: {e}")
+            scraper_ok = False # Mark as failed if export fails
     else:
         logger.warning("Skipping CSV export because one or more scrapers failed.")
+
+    if not scraper_ok:
+        import sys
+        logger.error("Scraping or Export process failed.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

@@ -39,6 +39,10 @@ UNIT_CONVERSION = {
     "l": 1000,
 }
 
+KNOWN_BRANDS = {
+    "Agrico", "Mazzraty", "Qinwan", "Sadeer", "Qatrat", "Wajbah", "Zad",
+}
+
 
 def extract_weight(name: str) -> tuple[float | None, str | None]:
     """Extract numeric weight and standard unit from product name.
