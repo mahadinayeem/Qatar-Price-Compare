@@ -24,49 +24,34 @@ async def scrape_page(page: Page) -> list[dict]:
 
     try:
         await page.wait_for_selector(
-            "[class*='group/card'], [class*='product'], .item, .card, [data-product]",
+            "[class*='group/card']",
             timeout=15000
         )
     except Exception:
         logger.warning("Family: Timeout waiting for products selector")
 
-    # Try multiple selector strategies
-    selectors = [
-        "[class*='group/card']",
-        ".product-item",
-        ".product-card",
-        "[class*='ProductCard']",
-        "[class*='product-item']",
-        ".item",
-    ]
-
-    items = []
-    for sel in selectors:
-        items = await page.query_selector_all(sel)
-        if items:
-            logger.info(f"Family: Using selector '{sel}', found {len(items)} items")
-            break
+    items = await page.query_selector_all("[class*='group/card']")
+    logger.info(f"Family: Using selector '[class*=group/card]', found {len(items)} items")
 
     for item in items:
         try:
-            name_el = await item.query_selector(
-                "[class*='name'], [class*='title'], h2, h3, p.name"
-            )
+            # Product name from h3
+            name_el = await item.query_selector("h3")
             full_name = (await name_el.inner_text()).strip() if name_el else ""
             if not full_name:
-                # Fallback to image alt text
                 img_el = await item.query_selector("img")
                 if img_el:
                     full_name = (await img_el.get_attribute("alt") or "").strip()
 
-            price_el = await item.query_selector(
-                "[class*='price'], .price, span[class*='Price']"
-            )
-            price_text = (await price_el.inner_text()).strip() if price_el else ""
+            # Price from the inline-flex whitespace-nowrap span (contains QAR + int + decimal)
+            price_el = await item.query_selector("span.inline-flex.items-baseline, span[class*='whitespace-nowrap']")
+            price_text = ""
+            if price_el:
+                price_text = (await price_el.inner_text()).strip().replace("\n", " ")
             price = parse_price(price_text)
 
             if price is None:
-                # Concatenate all span text contents that are part of price (e.g. QAR, 53, .00)
+                # Fallback: gather QAR + number spans from the card
                 spans = await item.query_selector_all("span")
                 price_parts = []
                 for s in spans:
@@ -89,15 +74,25 @@ async def scrape_page(page: Page) -> list[dict]:
             if product_url and product_url.startswith("/"):
                 product_url = BASE_URL + product_url
 
+            # SKU extraction
+            sku = None
+            if product_url:
+                # Family URLs often have the ID at the end: /products/ID
+                parts = product_url.strip("/").split("/")
+                if "products" in parts:
+                    idx = parts.index("products")
+                    if idx + 1 < len(parts):
+                        sku = parts[idx + 1].split("?")[0]
+
             if not full_name:
                 continue
 
-            # Use full product name for better deduplication across websites
             products.append({
                 "company": COMPANY,
                 "category": CATEGORY,
                 "brand": None,
                 "product_name": full_name,
+                "sku": sku,
                 "price": price,
                 "currency": "QAR",
                 "image_url": image_url,
@@ -110,19 +105,40 @@ async def scrape_page(page: Page) -> list[dict]:
     return products
 
 
+async def click_view_more_buttons(page: Page):
+    """
+    Click all 'View More' sub-category expand buttons to show hidden items in the sidebar.
+    These expand sub-category product lists (not main product list).
+    """
+    while True:
+        view_more_btns = await page.query_selector_all("button:has-text('View More')")
+        clicked = 0
+        for btn in view_more_btns:
+            try:
+                if await btn.is_visible() and await btn.is_enabled():
+                    await btn.click()
+                    await asyncio.sleep(0.5)
+                    clicked += 1
+            except:
+                pass
+        if clicked == 0:
+            break
+    logger.info("Family: All 'View More' sub-category buttons expanded")
+
+
 async def handle_pagination(page: Page) -> bool:
     """
-    Click 'Load More' or go to next page.
+    Click 'Load More' to load next batch of products.
     Returns True if more content was loaded.
     """
     try:
-        # Try Load More button first
+        # Try Load More button - text-based selectors
         load_more_selectors = [
+            "button:has-text('Load More')",
+            "button:has-text('Show More')",
             "button[class*='load-more']",
             "button[class*='LoadMore']",
             "[class*='load-more'] button",
-            "button:has-text('Load More')",
-            "button:has-text('Show More')",
         ]
         
         for selector in load_more_selectors:
@@ -132,28 +148,16 @@ async def handle_pagination(page: Page) -> bool:
                     is_visible = await load_more.is_visible()
                     is_enabled = await load_more.is_enabled()
                     if is_visible and is_enabled:
+                        prev_count = len(await page.query_selector_all("[class*='group/card']"))
                         await load_more.click()
-                        await asyncio.sleep(2)
-                        return True
-            except:
-                pass
-
-        # Try next page link
-        next_selectors = [
-            "a[rel='next']",
-            ".pagination .next:not(.disabled) a",
-            "[class*='next']:not([disabled]) a",
-            "a:has-text('Next')",
-        ]
-        
-        for selector in next_selectors:
-            try:
-                next_btn = await page.query_selector(selector)
-                if next_btn:
-                    await next_btn.click()
-                    await page.wait_for_load_state("domcontentloaded")
-                    await asyncio.sleep(2)
-                    return True
+                        await asyncio.sleep(2.5)
+                        new_count = len(await page.query_selector_all("[class*='group/card']"))
+                        if new_count > prev_count:
+                            logger.info(f"Family: Load More clicked, {prev_count} -> {new_count} items")
+                            return True
+                        else:
+                            logger.info("Family: Load More clicked but no new items, stopping")
+                            return False
             except:
                 pass
 
@@ -178,22 +182,23 @@ async def scrape(headless: bool = True) -> list[dict]:
         logger.info(f"Family: Loading {START_URL}")
         try:
             await page.goto(START_URL, wait_until="domcontentloaded", timeout=30000)
-            await asyncio.sleep(3)
+            # Wait for the initial product cards to render, indicating the page JS is running
+            try:
+                await page.wait_for_selector("[class*='group/card']", timeout=20000)
+            except Exception:
+                logger.warning("Family: Timeout waiting for initial product cards to render")
+            await asyncio.sleep(2)
 
-            page_num = 1
-            seen_count = 0
-
+            # Exhaust all Load More clicks to get all products
+            load_count = 0
             while True:
-                products = await scrape_page(page)
-                new_products = products[seen_count:]
-                all_products.extend(new_products)
-                logger.info(f"Family: Page {page_num} got {len(new_products)} new products")
-                seen_count = len(products)
-
                 has_more = await handle_pagination(page)
-                if not has_more or page_num >= 20:
+                if not has_more or load_count >= 30:  # Safety limit
                     break
-                page_num += 1
+                load_count += 1
+
+            logger.info(f"Family: Finished loading, clicked Load More {load_count} times")
+            all_products = await scrape_page(page)
 
         except Exception as e:
             logger.error(f"Family: Scrape error: {e}")

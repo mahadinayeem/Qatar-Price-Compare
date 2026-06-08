@@ -18,6 +18,11 @@ export function getDb(): Database.Database {
 export type Product = {
   product_group_id: number;
   product_name: string;
+  product_type: string | null;
+  sku: string | null;
+  origin_country: string | null;
+  standard_weight: number | null;
+  standard_unit: string | null;
   rawabi_price: number | null;
   family_price: number | null;
   lulu_price: number | null;

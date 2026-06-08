@@ -33,6 +33,11 @@ import {
 type Product = {
   product_group_id: number;
   product_name: string;
+  product_type: string | null;
+  sku: string | null;
+  origin_country: string | null;
+  standard_weight: number | null;
+  standard_unit: string | null;
   image_url: string;
   rawabi_price: number | null;
   family_price: number | null;
@@ -67,21 +72,23 @@ function lowestPrice(p: Product): "rawabi" | "family" | "lulu" | null {
 }
 
 function exportToCSV(products: Product[]) {
-  const headers = ["Product Name", "Rawabi (QAR)", "Family (QAR)", "Lulu (QAR)", "Avg Price (QAR)", "Last Updated"];
+  const headers = ["Product Name", "Product Type", "SKU", "Rawabi (QAR)", "Family (QAR)", "Lulu (QAR)", "Avg Price (QAR)", "Last Updated"];
   const rows = products.map((p) => [
     `"${p.product_name.replace(/"/g, '""')}"`,
+    `"${(p.product_type || "Other").replace(/"/g, '""')}"`,
+    `"${(p.sku || "").replace(/"/g, '""')}"`,
     p.rawabi_price ?? "",
     p.family_price ?? "",
     p.lulu_price ?? "",
     p.avg_price ?? "",
-    p.last_updated?.split("T")[0] ?? "",
+    p.last_updated?.replace(" ", "T")?.split("T")[0] ?? "",
   ]);
   const csv = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = `qatar-prices-${new Date().toISOString().split("T")[0]}.csv`;
+  link.download = `product-prices-${new Date().toISOString().split("T")[0]}.csv`;
   link.click();
   URL.revokeObjectURL(url);
 }
@@ -177,11 +184,28 @@ function ProductModal({
             <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white leading-tight">
               {product.product_name}
             </h2>
+            {product.sku && (
+              <p className="mt-0.5 text-xs font-bold text-brand-600 dark:text-brand-400">
+                SKU: {product.sku}
+              </p>
+            )}
+            <div className="mt-1.5 flex flex-wrap gap-2">
+              {product.origin_country && (
+                <span className="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-blue-500/20">
+                  {product.origin_country}
+                </span>
+              )}
+              {product.standard_weight && (
+                <span className="inline-flex items-center bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-orange-500/20">
+                  {product.standard_weight} {product.standard_unit}
+                </span>
+              )}
+            </div>
             <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 font-medium">
               Common product match across supermarkets
             </p>
             <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
-              Updated: {product.last_updated ? new Date(product.last_updated).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }) : "-"}
+              Updated: {formatProductDate(product.last_updated)}
             </p>
           </div>
         </div>
@@ -301,55 +325,33 @@ function ProductModal({
   );
 }
 
-function CompanyChart({ products }: { products: Product[] }) {
-  const data = [
-    {
-      name: "Rawabi",
-      avg:
-        products.filter((p) => p.rawabi_price != null).length > 0
-          ? parseFloat(
-              (
-                products.reduce((sum, p) => sum + (p.rawabi_price ?? 0), 0) /
-                products.filter((p) => p.rawabi_price != null).length
-              ).toFixed(2)
-            )
-          : 0,
-      fill: "#16a34a",
-    },
-    {
-      name: "Family",
-      avg:
-        products.filter((p) => p.family_price != null).length > 0
-          ? parseFloat(
-              (
-                products.reduce((sum, p) => sum + (p.family_price ?? 0), 0) /
-                products.filter((p) => p.family_price != null).length
-              ).toFixed(2)
-            )
-          : 0,
-      fill: "#2563eb",
-    },
-    {
-      name: "Lulu",
-      avg:
-        products.filter((p) => p.lulu_price != null).length > 0
-          ? parseFloat(
-              (
-                products.reduce((sum, p) => sum + (p.lulu_price ?? 0), 0) /
-                products.filter((p) => p.lulu_price != null).length
-              ).toFixed(2)
-            )
-          : 0,
-      fill: "#dc2626",
-    },
-  ];
+function CompanyChart({ storeCounts }: { storeCounts: { name: string; count: number }[] }) {
+  const data = storeCounts.map(item => {
+    let displayName = item.name;
+    let fill = "#64748b";
+    if (item.name.toLowerCase().includes("rawabi")) {
+      displayName = "Rawabi";
+      fill = "#16a34a";
+    } else if (item.name.toLowerCase().includes("family")) {
+      displayName = "Family";
+      fill = "#2563eb";
+    } else if (item.name.toLowerCase().includes("lulu")) {
+      displayName = "Lulu";
+      fill = "#dc2626";
+    }
+    return {
+      name: displayName,
+      count: item.count,
+      fill: fill
+    };
+  });
 
   return (
-    <ResponsiveContainer width="100%" height={160}>
-      <BarChart data={data} barSize={48}>
+    <ResponsiveContainer width="100%" height={180}>
+      <BarChart data={data} barSize={56}>
         <CartesianGrid stroke="rgba(148, 163, 184, 0.06)" strokeDasharray="3 3" vertical={false} />
         <XAxis dataKey="name" tick={{ fontSize: 11, fontWeight: 700, fill: "#94a3b8" }} stroke="none" />
-        <YAxis tick={{ fontSize: 10, fill: "#94a3b8" }} unit=" Q" stroke="none" />
+        <YAxis tick={{ fontSize: 10, fill: "#94a3b8" }} stroke="none" />
         <Tooltip
           contentStyle={{
             backgroundColor: "rgba(15, 23, 42, 0.95)",
@@ -357,9 +359,9 @@ function CompanyChart({ products }: { products: Product[] }) {
             borderRadius: "12px",
             color: "#fff",
           }}
-          formatter={(value: number) => [`${value} QAR`, "Avg Price"]}
+          formatter={(value: number) => [`${value} items`, "Products Found"]}
         />
-        <Bar dataKey="avg" radius={[8, 8, 0, 0]}>
+        <Bar dataKey="count" radius={[8, 8, 0, 0]}>
           {data.map((entry, index) => (
             <rect key={index} fill={entry.fill} />
           ))}
@@ -369,16 +371,52 @@ function CompanyChart({ products }: { products: Product[] }) {
   );
 }
 
+function formatLastUpdated(dateStr: string | null) {
+  if (!dateStr) return "-";
+  // Convert "YYYY-MM-DD HH:MM:SS" to ISO "YYYY-MM-DDTHH:MM:SSZ" (assuming UTC)
+  const normalized = dateStr.includes("T") ? dateStr : dateStr.replace(" ", "T") + "Z";
+  const date = new Date(normalized);
+  if (isNaN(date.getTime())) return dateStr;
+  return date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
+
+function formatProductDate(dateStr: string | null, includeTime: boolean = false, includeYear: boolean = true) {
+  if (!dateStr) return "-";
+  const normalized = dateStr.includes("T") ? dateStr : dateStr.replace(" ", "T") + "Z";
+  const date = new Date(normalized);
+  if (isNaN(date.getTime())) return dateStr;
+  return date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    ...(includeYear ? { year: "numeric" } : {}),
+    ...(includeTime ? { hour: "2-digit", minute: "2-digit", hour12: true } : {}),
+  });
+}
+
 export default function Dashboard() {
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [showAllTypes, setShowAllTypes] = useState(false);
+  const [productTypes, setProductTypes] = useState<{ product_type: string | null; count: number }[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showChart, setShowChart] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
+  const [exporting, setExporting] = useState(false);
+  const [lastScraped, setLastScraped] = useState<string | null>(null);
+  const [storeCounts, setStoreCounts] = useState<{ name: string; count: number }[]>([]);
+  const [scraping, setScraping] = useState(false);
+  const [scrapeError, setScrapeError] = useState<string | null>(null);
 
   const LIMIT = 50;
   const searchRef = useRef<NodeJS.Timeout>();
@@ -424,16 +462,49 @@ export default function Dashboard() {
         search,
         page: String(nextPage),
         limit: String(LIMIT),
+        t: Date.now().toString(), // Cache buster!
       });
+      if (selectedTypes.length > 0) {
+        params.append("types", selectedTypes.join(","));
+      }
 
-      const res = await fetch(`/api/products?${params.toString()}`);
+      const res = await fetch(`/api/products?${params.toString()}`, { cache: "no-store" });
       const data = await res.json();
       setProducts(data.products || []);
       setTotal(data.total || 0);
+      setProductTypes(data.productTypes || []);
+      setLastScraped(data.lastScraped || null);
+      setStoreCounts(data.storeCounts || []);
       setLoading(false);
     },
-    [search]
+    [search, selectedTypes]
   );
+
+  const handleRefresh = async () => {
+    try {
+      setScraping(true);
+      setScrapeError(null);
+      const res = await fetch("/api/scrape", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Scraper execution failed");
+      }
+      await fetchProducts(page);
+    } catch (err: any) {
+      console.error("Failed to run scraper:", err);
+      setScrapeError(err.message || "Failed to update prices.");
+    } finally {
+      setScraping(false);
+    }
+  };
+
+  useEffect(() => {
+    setPage(1);
+    fetchProducts(1);
+  }, [selectedTypes]);
 
   useEffect(() => {
     clearTimeout(searchRef.current);
@@ -441,14 +512,37 @@ export default function Dashboard() {
       setPage(1);
       fetchProducts(1);
     }, 350);
-  }, [search, fetchProducts]);
+  }, [search]);
+
+  const handleExport = async () => {
+    try {
+      setExporting(true);
+      const params = new URLSearchParams({
+        search,
+        page: "1",
+        limit: "100000",
+      });
+      if (selectedTypes.length > 0) {
+        params.append("types", selectedTypes.join(","));
+      }
+
+      const res = await fetch(`/api/products?${params.toString()}`);
+      const data = await res.json();
+      const allProducts = data.products || [];
+      exportToCSV(allProducts);
+    } catch (err) {
+      console.error("Failed to export products:", err);
+    } finally {
+      setExporting(false);
+    }
+  };
 
   const totalPages = Math.ceil(total / LIMIT);
 
   return (
     <div className="min-h-screen transition-theme dark:bg-[#0b0f19]">
       {/* Premium Header */}
-      <header className="sticky top-0 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-white/[0.06] shadow-sm transition-theme">
+      <header className="sticky top-0 z-30 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200/50 dark:border-white/[0.06] shadow-sm transition-theme">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-3.5">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-green-500 via-emerald-600 to-blue-600 shadow-md shadow-emerald-500/10">
@@ -456,7 +550,7 @@ export default function Dashboard() {
             </div>
             <div>
               <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-                Qatar Price Compare
+                Product Price Compare
               </h1>
               <p className="text-xs text-slate-400 dark:text-slate-500 font-medium">Smart Product Naming Match</p>
             </div>
@@ -511,31 +605,63 @@ export default function Dashboard() {
             </button>
 
             <button
-              onClick={() => exportToCSV(products)}
-              className="flex items-center gap-2 rounded-xl bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-md shadow-green-500/10 hover:bg-green-700 transition"
+              onClick={handleExport}
+              disabled={exporting}
+              className="flex items-center gap-2 rounded-xl bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-md shadow-green-500/10 hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Download size={16} />
-              <span className="hidden md:inline">Export CSV</span>
+              {exporting ? (
+                <RefreshCw size={16} className="animate-spin" />
+              ) : (
+                <Download size={16} />
+              )}
+              <span className="hidden md:inline">
+                {exporting ? "Exporting..." : "Export CSV"}
+              </span>
             </button>
           </div>
         </div>
       </header>
 
+      {/* Hero Banner Section */}
+      <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-900 shadow-inner">
+        {/* Background Image with overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 dark:opacity-40 transition-transform duration-700 hover:scale-105"
+          style={{ backgroundImage: "url('/hero_banner.png')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+
+        <div className="relative mx-auto max-w-7xl h-full px-4 sm:px-6 flex flex-col justify-center text-white">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/25 border border-emerald-500/35 text-emerald-350 text-xs font-semibold w-fit mb-3.5 backdrop-blur-md shadow-sm">
+              <ShoppingCart size={12} className="text-emerald-400" /> Live Supermarket Price Comparison
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-none drop-shadow-md text-white">
+              Product Price Compare
+            </h2>
+            <p className="mt-2.5 text-sm sm:text-base md:text-lg text-slate-200 font-medium drop-shadow max-w-xl">
+              Compare fresh fruit and vegetable prices across Rawabi, Family Food Centre, and Lulu Hypermarket. Shop smart and save on your daily produce.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Main Body container */}
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 relative">
         {/* Statistics Charts */}
-        {showChart && products.length > 0 && (
+        {showChart && storeCounts.length > 0 && (
           <div className="mb-6 glass-card p-5 animate-fade-in">
             <h2 className="mb-4 flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-300">
-              <BarChart2 size={18} className="text-brand-500" /> Average Fruit &amp; Vegetable Prices (Current Page)
+              <BarChart2 size={18} className="text-brand-500" /> Total Products Scraped per Store
             </h2>
-            <CompanyChart products={products} />
+            <CompanyChart storeCounts={storeCounts} />
           </div>
         )}
 
         {/* Search input container */}
         <div className="mb-6 glass-card p-4">
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
             <div className="relative flex-1">
               <Search
                 size={18}
@@ -557,278 +683,422 @@ export default function Dashboard() {
                 </button>
               )}
             </div>
+
+            {/* Refresh Button & Last Updated Time */}
+            <div className="flex flex-col items-center sm:items-end gap-1 select-none">
+              <button
+                onClick={handleRefresh}
+                disabled={loading || scraping}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl border border-slate-250 dark:border-white/[0.08] bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 px-4 py-3 text-sm font-semibold transition text-slate-700 dark:text-slate-350 cursor-pointer shadow-sm hover:shadow disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <RefreshCw size={16} className={loading || scraping ? "animate-spin" : ""} />
+                <span>{scraping ? "Scraping Sites... (1-2 mins)" : "Refresh Data"}</span>
+              </button>
+              {scrapeError && (
+                <span className="text-[10px] text-rose-500 font-bold max-w-[200px] text-right">
+                  Error: {scrapeError}
+                </span>
+              )}
+              {lastScraped && !scrapeError && (
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium whitespace-nowrap">
+                  Last updated: {formatLastUpdated(lastScraped)}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Meta comparison header indicators */}
-        <div className="mb-4 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between px-1">
-          <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-            {loading ? (
-              <span className="flex items-center gap-1.5 animate-pulse">
-                <RefreshCw size={12} className="animate-spin text-brand-500" /> Loading products database...
-              </span>
-            ) : (
-              <>
-                Showing <span className="text-slate-850 dark:text-slate-200">{products.length}</span> of{" "}
-                <span className="text-slate-850 dark:text-slate-200">{total}</span> unique matching products
-              </>
-            )}
-          </p>
+        {/* Category Filters Panel (Horizontal checkbox layout) */}
+        {productTypes.length > 0 && (
+          <div className="mb-6 glass-card p-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div>
+                <h3 className="font-bold text-slate-800 dark:text-slate-200 text-sm">
+                  Filter by Category
+                </h3>
+                <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+                  Select one or multiple categories to compare prices.
+                </p>
+              </div>
+              {selectedTypes.length > 0 && (
+                <button
+                  onClick={() => setSelectedTypes([])}
+                  className="text-xs text-rose-500 hover:text-rose-650 font-bold transition flex items-center gap-1.5 w-fit"
+                >
+                  <X size={14} /> Clear active filters ({selectedTypes.length})
+                </button>
+              )}
+            </div>
 
-          <div className="flex items-center gap-3.5 text-xs font-bold text-slate-500">
-            <span className="flex items-center gap-1.5">
-              <span className="inline-block h-2.5 w-2.5 rounded-full bg-green-500" />
-              Rawabi
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="inline-block h-2.5 w-2.5 rounded-full bg-blue-600" />
-              Family
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="inline-block h-2.5 w-2.5 rounded-full bg-red-600" />
-              Lulu
-            </span>
-          </div>
-        </div>
+            {/* Horizontal checkboxes flex-wrap */}
+            <div className="flex flex-wrap gap-2.5">
+              {/* Select All / All Products pill */}
+              <button
+                onClick={() => setSelectedTypes([])}
+                className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2.5 border ${
+                  selectedTypes.length === 0
+                    ? "bg-emerald-500 border-emerald-500 text-white shadow-md shadow-emerald-500/15"
+                    : "bg-slate-50 dark:bg-slate-800/40 text-slate-600 dark:text-slate-400 border-slate-200/50 dark:border-white/[0.06] hover:bg-slate-100 dark:hover:bg-slate-800"
+                }`}
+              >
+                <div className={`h-4.5 w-4.5 rounded border flex items-center justify-center transition-colors ${
+                  selectedTypes.length === 0
+                    ? "bg-white border-white text-emerald-500"
+                    : "border-slate-350 dark:border-slate-600 bg-white dark:bg-slate-800"
+                }`}>
+                  {selectedTypes.length === 0 && (
+                    <svg className="h-3 w-3 fill-current" viewBox="0 0 20 20">
+                      <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                    </svg>
+                  )}
+                </div>
+                <span>All Products</span>
+              </button>
 
-        {/* -------------------- VIEW LAYOUT MODE 1: GRID CARDS -------------------- */}
-        {viewMode === "grid" && (
-          <div className="mb-6">
-            {loading ? (
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {Array.from({ length: 12 }).map((_, idx) => (
-                  <div key={idx} className="glass-card h-80 p-5 flex flex-col justify-between">
-                    <div className="w-full h-32 bg-slate-100 dark:bg-slate-800 rounded-xl animate-pulse" />
-                    <div className="h-4 w-3/4 bg-slate-100 dark:bg-slate-800 rounded animate-pulse my-2" />
-                    <div className="space-y-1">
-                      <div className="h-3 w-1/2 bg-slate-100 dark:bg-slate-800 rounded animate-pulse" />
-                      <div className="h-3 w-1/3 bg-slate-100 dark:bg-slate-800 rounded animate-pulse" />
+              {/* Individual category checkboxes */}
+              {(showAllTypes ? productTypes : productTypes.slice(0, 8)).map((type) => {
+                const typeName = type.product_type || "Other";
+                const isSelected = selectedTypes.includes(typeName);
+
+                return (
+                  <button
+                    key={typeName}
+                    onClick={() => {
+                      setSelectedTypes((prev) => {
+                        if (prev.includes(typeName)) {
+                          return prev.filter((t) => t !== typeName);
+                        } else {
+                          return [...prev, typeName];
+                        }
+                      });
+                    }}
+                    className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2.5 border ${
+                      isSelected
+                        ? "bg-emerald-500 border-emerald-500 text-white shadow-md shadow-emerald-500/15"
+                        : "bg-slate-550/50 dark:bg-slate-800/40 text-slate-600 dark:text-slate-450 border-slate-200/50 dark:border-white/[0.06] hover:bg-slate-100 dark:hover:bg-slate-800"
+                    }`}
+                  >
+                    <div className={`h-4.5 w-4.5 rounded border flex items-center justify-center transition-colors ${
+                      isSelected
+                        ? "bg-white border-white text-emerald-500"
+                        : "border-slate-350 dark:border-slate-600 bg-white dark:bg-slate-800"
+                    }`}>
+                      {isSelected && (
+                        <svg className="h-3 w-3 fill-current" viewBox="0 0 20 20">
+                          <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                        </svg>
+                      )}
                     </div>
-                  </div>
-                ))}
-              </div>
-            ) : products.length === 0 ? (
-              <div className="glass-card py-20 text-center text-slate-400 dark:text-slate-500">
-                <ShoppingCart size={48} className="mx-auto mb-4 opacity-25" />
-                <p className="text-lg font-bold">No products matching filters found</p>
-                {search && <p className="mt-1 text-sm">Try searching for &ldquo;Tomato&rdquo; or &ldquo;Mango&rdquo;</p>}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {products.map((product) => {
-                  const low = lowestPrice(product);
-                  return (
-                    <div
-                      key={product.product_group_id}
-                      className="glass-card p-4 hover:-translate-y-1.5 hover:shadow-xl hover:border-brand-500/35 hover:dark:border-white/10 flex flex-col justify-between relative group cursor-pointer"
-                      onClick={() => setSelectedProduct(product)}
-                    >
-                      {/* Product Card Top: Image & Name */}
-                      <div>
-                        <div className="w-full h-36 rounded-xl border dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900 relative">
-                          {product.image_url ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                              src={product.image_url}
-                              alt={product.product_name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).style.display = "none";
-                              }}
-                            />
-                          ) : (
-                            <div className="flex w-full h-full items-center justify-center bg-slate-50 dark:bg-slate-800/40">
-                              <ShoppingCart className="text-slate-200 dark:text-slate-700" size={32} />
-                            </div>
-                          )}
-                          {low && (
-                            <div className="absolute top-2 left-2 z-10">
-                              <span className="flex items-center gap-0.5 bg-green-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-md">
-                                <Crown size={8} /> Cheapest at {low.toUpperCase()}
-                              </span>
-                            </div>
-                          )}
-                        </div>
+                    <span>{typeName}</span>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-black ${
+                      isSelected
+                        ? "bg-white/20 text-white"
+                        : "bg-slate-200/60 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
+                    }`}>
+                      {type.count}
+                    </span>
+                  </button>
+                );
+              })}
 
-                        <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 line-clamp-2 mt-3 leading-snug">
-                          {product.product_name}
-                        </h3>
-                      </div>
-
-                      {/* Store Comparisons and pricing */}
-                      <div className="mt-4">
-                        <div className="border-t border-slate-100 dark:border-slate-800/50 pt-3 space-y-2 text-xs font-semibold">
-                          <div className="flex justify-between items-center">
-                            <span className="text-slate-400 dark:text-slate-500">Rawabi:</span>
-                            <span className={low === "rawabi" ? "text-green-600 dark:text-green-400 font-bold" : "text-slate-700 dark:text-slate-300"}>
-                              {product.rawabi_price ? `${product.rawabi_price.toFixed(2)} Q` : <span className="text-slate-300 dark:text-slate-700">-</span>}
-                            </span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-slate-400 dark:text-slate-500">Family:</span>
-                            <span className={low === "family" ? "text-blue-600 dark:text-blue-400 font-bold" : "text-slate-700 dark:text-slate-300"}>
-                              {product.family_price ? `${product.family_price.toFixed(2)} Q` : <span className="text-slate-300 dark:text-slate-700">-</span>}
-                            </span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-slate-400 dark:text-slate-500">Lulu:</span>
-                            <span className={low === "lulu" ? "text-red-600 dark:text-red-400 font-bold" : "text-slate-700 dark:text-slate-300"}>
-                              {product.lulu_price ? `${product.lulu_price.toFixed(2)} Q` : <span className="text-slate-300 dark:text-slate-700">-</span>}
-                            </span>
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedProduct(product);
-                          }}
-                          className="mt-4 w-full py-2.5 px-4 rounded-xl flex items-center justify-center gap-1.5 text-xs font-bold transition shadow-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200/40 dark:border-slate-700"
-                        >
-                          View Details
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+              {/* See More Toggle Button */}
+              {productTypes.length > 8 && (
+                <button
+                  onClick={() => setShowAllTypes(!showAllTypes)}
+                  className="px-4 py-2.5 rounded-xl text-xs font-extrabold text-emerald-600 dark:text-emerald-450 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 transition-all flex items-center gap-1"
+                >
+                  {showAllTypes ? "Show Less" : `See More (${productTypes.length - 8} more)`}
+                </button>
+              )}
+            </div>
           </div>
         )}
 
-        {/* -------------------- VIEW LAYOUT MODE 2: HIGH-DENSITY TABLE -------------------- */}
-        {viewMode === "table" && (
-          <div className="mb-6 overflow-hidden glass-card">
-            <div className="overflow-x-auto">
-              <table className="price-table w-full text-sm">
-                <thead>
-                  <tr className="border-b border-slate-200/50 dark:border-white/[0.06] bg-slate-50/50 dark:bg-slate-900/50">
-                    <th className="w-12 px-4 py-3.5 text-left font-bold text-slate-400" />
-                    <th className="min-w-[220px] px-4 py-3.5 text-left font-bold text-slate-400">Common Product</th>
-                    <th className="px-4 py-3.5 text-right font-bold text-green-600 dark:text-green-500">Rawabi</th>
-                    <th className="px-4 py-3.5 text-right font-bold text-blue-600 dark:text-blue-500">Family</th>
-                    <th className="px-4 py-3.5 text-right font-bold text-red-600 dark:text-red-500">Lulu</th>
-                    <th className="px-4 py-3.5 text-right font-bold text-slate-400">Avg</th>
-                    <th className="px-4 py-3.5 text-right font-bold text-slate-400">Updated</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-white/[0.04]">
-                  {loading ? (
-                    Array.from({ length: 8 }).map((_, rowIndex) => (
-                      <tr key={rowIndex}>
-                        {Array.from({ length: 7 }).map((_, colIndex) => (
-                          <td key={colIndex} className="px-4 py-3.5">
-                            <div className="h-4 animate-pulse rounded bg-slate-100 dark:bg-slate-800" />
-                          </td>
-                        ))}
-                      </tr>
-                    ))
-                  ) : products.length === 0 ? (
-                    <tr>
-                      <td colSpan={7} className="py-20 text-center text-slate-400 dark:text-slate-500">
-                        <ShoppingCart size={40} className="mx-auto mb-3 opacity-30" />
-                        <p className="font-bold">No products matching filters found</p>
-                      </td>
-                    </tr>
-                  ) : (
-                    products.map((product) => {
-                      const low = lowestPrice(product);
-                      return (
-                        <tr
-                          key={product.product_group_id}
-                          className="cursor-pointer transition-colors hover:bg-slate-50/50 dark:hover:bg-slate-800/10"
-                          onClick={() => setSelectedProduct(product)}
-                        >
-                          <td className="px-4 py-3">
+        {/* Main Content Area (Full Width Grid/Table) */}
+        <div className="w-full">
+          {/* Comparison Indicators */}
+          <div className="mb-4 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between px-1">
+            <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
+              {scraping ? (
+                <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 animate-pulse font-bold">
+                  <RefreshCw size={12} className="animate-spin" /> Scraping supermarkets for fresh prices (takes 1-2 mins)...
+                </span>
+              ) : loading ? (
+                <span className="flex items-center gap-1.5 animate-pulse">
+                  <RefreshCw size={12} className="animate-spin text-brand-500" /> Loading products database...
+                </span>
+              ) : (
+                <>
+                  Showing <span className="text-slate-850 dark:text-slate-200">{products.length}</span> of{" "}
+                  <span className="text-slate-850 dark:text-slate-200">{total}</span> unique matching products
+                </>
+              )}
+            </p>
+
+            <div className="flex items-center gap-3.5 text-xs font-bold text-slate-500">
+              <span className="flex items-center gap-1.5">
+                <span className="inline-block h-2.5 w-2.5 rounded-full bg-green-500" />
+                Rawabi
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="inline-block h-2.5 w-2.5 rounded-full bg-blue-600" />
+                Family
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="inline-block h-2.5 w-2.5 rounded-full bg-red-600" />
+                Lulu
+              </span>
+            </div>
+          </div>
+
+          {/* GRID VIEW */}
+          {viewMode === "grid" && (
+            <div className="mb-6">
+              {loading ? (
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                  {Array.from({ length: 15 }).map((_, idx) => (
+                    <div key={idx} className="glass-card h-80 p-5 flex flex-col justify-between animate-pulse">
+                      <div className="w-full h-32 bg-slate-100 dark:bg-slate-800 rounded-xl" />
+                      <div className="h-4 w-3/4 bg-slate-100 dark:bg-slate-800 rounded my-2" />
+                      <div className="space-y-1">
+                        <div className="h-3 w-1/2 bg-slate-100 dark:bg-slate-800 rounded" />
+                        <div className="h-3 w-1/3 bg-slate-100 dark:bg-slate-800 rounded" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : products.length === 0 ? (
+                <div className="glass-card py-20 text-center text-slate-400 dark:text-slate-500">
+                  <ShoppingCart size={48} className="mx-auto mb-4 opacity-25" />
+                  <p className="text-lg font-bold">No products matching filters found</p>
+                  {search && <p className="mt-1 text-sm">Try searching for &ldquo;Tomato&rdquo; or &ldquo;Mango&rdquo;</p>}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                  {products.map((product) => {
+                    const low = lowestPrice(product);
+                    return (
+                      <div
+                        key={product.product_group_id}
+                        className="glass-card p-4 hover:-translate-y-1.5 hover:shadow-xl hover:border-brand-500/35 hover:dark:border-white/10 flex flex-col justify-between relative group cursor-pointer"
+                        onClick={() => setSelectedProduct(product)}
+                      >
+                        <div>
+                          <div className="w-full h-36 rounded-xl border dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900 relative">
                             {product.image_url ? (
-                              // eslint-disable-next-line @next/next/no-img-element
                               <img
                                 src={product.image_url}
                                 alt={product.product_name}
-                                className="h-9 w-9 rounded-lg border dark:border-slate-850 object-cover bg-white"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 onError={(e) => {
                                   (e.target as HTMLImageElement).style.display = "none";
                                 }}
                               />
                             ) : (
-                              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-850">
-                                <ShoppingCart size={14} className="text-slate-300 dark:text-slate-600" />
+                              <div className="flex w-full h-full items-center justify-center bg-slate-50 dark:bg-slate-800/40">
+                                <ShoppingCart className="text-slate-200 dark:text-slate-700" size={32} />
                               </div>
                             )}
-                          </td>
-                          <td className="px-4 py-3">
-                            <span className="line-clamp-2 font-bold text-slate-800 dark:text-slate-200">
-                              {product.product_name}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-right">
-                            <PriceCell price={product.rawabi_price} isLowest={low === "rawabi"} />
-                          </td>
-                          <td className="px-4 py-3 text-right">
-                            <PriceCell price={product.family_price} isLowest={low === "family"} />
-                          </td>
-                          <td className="px-4 py-3 text-right">
-                            <PriceCell price={product.lulu_price} isLowest={low === "lulu"} />
-                          </td>
-                          <td className="px-4 py-3 text-right text-sm font-semibold tabular-nums text-slate-700 dark:text-slate-400">
-                            {product.avg_price != null ? product.avg_price.toFixed(2) : "-"}
-                          </td>
-                          <td className="whitespace-nowrap px-4 py-3 text-right text-xs text-slate-400 dark:text-slate-500 font-medium">
-                            {product.last_updated
-                              ? new Date(product.last_updated).toLocaleDateString("en-GB", {
-                                  day: "2-digit",
-                                  month: "short",
-                                })
-                              : "-"}
-                          </td>
-                        </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+                            {low && (
+                              <div className="absolute top-2 left-2 z-10">
+                                <span className="flex items-center gap-0.5 bg-green-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-md">
+                                  <Crown size={8} /> Cheapest
+                                </span>
+                              </div>
+                            )}
+                            {product.product_type && (
+                              <div className="absolute top-2 right-2 z-10">
+                                <span className="bg-slate-900/60 backdrop-blur-sm text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider">
+                                  {product.product_type}
+                                </span>
+                              </div>
+                            )}
+                          </div>
 
-        {/* -------------------- PAGINATION MODULE -------------------- */}
-        {totalPages > 1 && (
-          <div className="flex items-center justify-between border-t border-slate-200/50 dark:border-white/[0.06] bg-white/40 dark:bg-slate-900/10 px-4 py-4 rounded-2xl glass-card">
-            <p className="text-xs md:text-sm font-semibold text-slate-400 dark:text-slate-500">
-              Page <span className="text-slate-800 dark:text-slate-350">{page}</span> of {totalPages}
-            </p>
-            <div className="flex gap-2">
-              <button
-                onClick={() => {
-                  const nextPage = Math.max(1, page - 1);
-                  setPage(nextPage);
-                  fetchProducts(nextPage);
-                }}
-                disabled={page === 1}
-                className="rounded-xl border border-slate-200/50 dark:border-white/[0.06] bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 p-2.5 shadow-sm transition hover:bg-slate-50 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                <ChevronLeft size={16} />
-              </button>
-              <button
-                onClick={() => {
-                  const nextPage = Math.min(totalPages, page + 1);
-                  setPage(nextPage);
-                  fetchProducts(nextPage);
-                }}
-                disabled={page === totalPages}
-                className="rounded-xl border border-slate-200/50 dark:border-white/[0.06] bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 p-2.5 shadow-sm transition hover:bg-slate-50 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                <ChevronRight size={16} />
-              </button>
+                          <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 line-clamp-2 mt-3 leading-snug">
+                            {product.product_name}
+                          </h3>
+                        </div>
+
+                        <div className="mt-4">
+                          <div className="border-t border-slate-100 dark:border-slate-800/50 pt-3 space-y-2 text-xs font-semibold">
+                            <div className="flex justify-between items-center">
+                              <span className="text-slate-400 dark:text-slate-500">Rawabi:</span>
+                              <span className={low === "rawabi" ? "text-green-600 dark:text-green-400 font-bold" : "text-slate-700 dark:text-slate-300"}>
+                                {product.rawabi_price ? `${product.rawabi_price.toFixed(2)} Q` : <span className="text-slate-350 dark:text-slate-700">-</span>}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-slate-400 dark:text-slate-500">Family:</span>
+                              <span className={low === "family" ? "text-blue-600 dark:text-blue-400 font-bold" : "text-slate-700 dark:text-slate-300"}>
+                                {product.family_price ? `${product.family_price.toFixed(2)} Q` : <span className="text-slate-350 dark:text-slate-700">-</span>}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-slate-400 dark:text-slate-500">Lulu:</span>
+                              <span className={low === "lulu" ? "text-red-600 dark:text-red-400 font-bold" : "text-slate-700 dark:text-slate-300"}>
+                                {product.lulu_price ? `${product.lulu_price.toFixed(2)} Q` : <span className="text-slate-350 dark:text-slate-700">-</span>}
+                              </span>
+                            </div>
+                          </div>
+
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedProduct(product);
+                            }}
+                            className="mt-4 w-full py-2.5 px-4 rounded-xl flex items-center justify-center gap-1.5 text-xs font-bold transition shadow-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200/40 dark:border-slate-700"
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          )}
+
+          {/* TABLE VIEW */}
+          {viewMode === "table" && (
+            <div className="mb-6 overflow-hidden glass-card">
+              <div className="overflow-x-auto">
+                <table className="price-table w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-slate-200/50 dark:border-white/[0.06] bg-slate-50/50 dark:bg-slate-900/50">
+                      <th className="w-12 px-4 py-3.5 text-left font-bold text-slate-400" />
+                      <th className="min-w-[200px] px-4 py-3.5 text-left font-bold text-slate-400">Common Product</th>
+                      <th className="px-4 py-3.5 text-left font-bold text-slate-400">SKU</th>
+                      <th className="px-4 py-3.5 text-left font-bold text-slate-400">Type</th>
+                      <th className="px-4 py-3.5 text-right font-bold text-green-600 dark:text-green-500">Rawabi</th>
+                      <th className="px-4 py-3.5 text-right font-bold text-blue-600 dark:text-blue-500">Family</th>
+                      <th className="px-4 py-3.5 text-right font-bold text-red-600 dark:text-red-500">Lulu</th>
+                      <th className="px-4 py-3.5 text-right font-bold text-slate-400">Avg</th>
+                      <th className="px-4 py-3.5 text-right font-bold text-slate-400">Updated</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 dark:divide-white/[0.04]">
+                    {loading ? (
+                      Array.from({ length: 10 }).map((_, rowIndex) => (
+                        <tr key={rowIndex}>
+                          {Array.from({ length: 9 }).map((_, colIndex) => (
+                            <td key={colIndex} className="px-4 py-3.5">
+                              <div className="h-4 animate-pulse rounded bg-slate-100 dark:bg-slate-800" />
+                            </td>
+                          ))}
+                        </tr>
+                      ))
+                    ) : products.length === 0 ? (
+                      <tr>
+                        <td colSpan={9} className="py-20 text-center text-slate-400 dark:text-slate-500">
+                          <ShoppingCart size={40} className="mx-auto mb-3 opacity-30" />
+                          <p className="font-bold">No products matching filters found</p>
+                        </td>
+                      </tr>
+                    ) : (
+                      products.map((product) => {
+                        const low = lowestPrice(product);
+                        return (
+                          <tr
+                            key={product.product_group_id}
+                            className="cursor-pointer transition-colors hover:bg-slate-50/50 dark:hover:bg-slate-800/10"
+                            onClick={() => setSelectedProduct(product)}
+                          >
+                            <td className="px-4 py-3">
+                              {product.image_url ? (
+                                <img
+                                  src={product.image_url}
+                                  alt={product.product_name}
+                                  className="h-9 w-9 rounded-lg border dark:border-slate-850 object-cover bg-white"
+                                  onError={(e) => {
+                                    (e.target as HTMLImageElement).style.display = "none";
+                                  }}
+                                />
+                              ) : (
+                                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-850">
+                                  <ShoppingCart size={14} className="text-slate-300 dark:text-slate-600" />
+                                </div>
+                              )}
+                            </td>
+                            <td className="px-4 py-3">
+                              <span className="line-clamp-2 font-bold text-slate-800 dark:text-slate-200">
+                                {product.product_name}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3">
+                              <span className="text-xs font-medium text-slate-500 dark:text-slate-400 tabular-nums">
+                                {product.sku || "-"}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-left">
+                              <span className="inline-flex items-center bg-slate-100 dark:bg-slate-800 text-slate-650 dark:text-slate-350 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                {product.product_type || "Other"}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <PriceCell price={product.rawabi_price} isLowest={low === "rawabi"} />
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <PriceCell price={product.family_price} isLowest={low === "family"} />
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <PriceCell price={product.lulu_price} isLowest={low === "lulu"} />
+                            </td>
+                            <td className="px-4 py-3 text-right text-sm font-semibold tabular-nums text-slate-700 dark:text-slate-400">
+                              {product.avg_price != null ? product.avg_price.toFixed(2) : "-"}
+                            </td>
+                            <td className="whitespace-nowrap px-4 py-3 text-right text-xs text-slate-400 dark:text-slate-500 font-medium">
+                              {formatProductDate(product.last_updated, false, false)}
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* PAGINATION */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between border-t border-slate-200/50 dark:border-white/[0.06] bg-white/40 dark:bg-slate-900/10 px-4 py-4 rounded-2xl glass-card">
+              <p className="text-xs md:text-sm font-semibold text-slate-400 dark:text-slate-500">
+                Page <span className="text-slate-800 dark:text-slate-350">{page}</span> of {totalPages}
+              </p>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => {
+                    const nextPage = Math.max(1, page - 1);
+                    setPage(nextPage);
+                    fetchProducts(nextPage);
+                  }}
+                  disabled={page === 1}
+                  className="rounded-xl border border-slate-200/50 dark:border-white/[0.06] bg-white dark:bg-slate-800 text-slate-650 dark:text-slate-300 p-2.5 shadow-sm transition hover:bg-slate-50 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  onClick={() => {
+                    const nextPage = Math.min(totalPages, page + 1);
+                    setPage(nextPage);
+                    fetchProducts(nextPage);
+                  }}
+                  disabled={page === totalPages}
+                  className="rounded-xl border border-slate-200/50 dark:border-white/[0.06] bg-white dark:bg-slate-800 text-slate-650 dark:text-slate-300 p-2.5 shadow-sm transition hover:bg-slate-50 dark:hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
 
         <p className="mt-8 text-center text-xs text-slate-400 dark:text-slate-500 font-medium">
           Prices parsed and updated dynamically every 6 hours via GitHub Actions workflow scheduler. All prices shown in QAR.
         </p>
       </main>
-
       {/* Selected Product modal */}
       {selectedProduct && (
         <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />

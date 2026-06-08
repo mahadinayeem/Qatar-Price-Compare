@@ -26,6 +26,10 @@ CREATE TABLE IF NOT EXISTS products (
     category_id INTEGER,
     brand_id INTEGER,
     product_name TEXT NOT NULL,
+    sku TEXT,
+    origin_country TEXT,
+    standard_weight REAL,
+    standard_unit TEXT,
     product_url TEXT,
     image_url TEXT,
     product_group_id INTEGER,
@@ -39,6 +43,10 @@ CREATE TABLE IF NOT EXISTS products (
 CREATE TABLE IF NOT EXISTS product_groups (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     canonical_name TEXT NOT NULL,
+    product_type TEXT,
+    origin_country TEXT,
+    standard_weight REAL,
+    standard_unit TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -10,12 +10,12 @@ const jakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Qatar Price Compare | Rawabi · Family · Lulu",
+  title: "Product Price Compare | Rawabi · Family · Lulu",
   description:
     "Compare live fruit & vegetable prices across Qatar's top hypermarkets — Rawabi, Family Food Centre, and Lulu Hypermarket. Updated automatically every 6 hours.",
   keywords: ["Qatar prices", "Rawabi", "Lulu Hypermarket", "Family Food Centre", "grocery prices Qatar", "fruit vegetable prices Qatar"],
   openGraph: {
-    title: "Qatar Price Compare",
+    title: "Product Price Compare",
     description: "Live price comparison for fruits & vegetables across Qatar supermarkets.",
     type: "website",
   },

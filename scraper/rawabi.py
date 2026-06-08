@@ -59,6 +59,16 @@ async def scrape_page(page: Page) -> list[dict]:
             if product_url and product_url.startswith("/"):
                 product_url = BASE_URL + product_url
 
+            # SKU extraction
+            sku = None
+            if product_url:
+                # Rawabi URLs often have an ID at the end
+                parts = product_url.strip("/").split("/")
+                if len(parts) > 0:
+                    last_part = parts[-1].split("?")[0]
+                    if any(c.isdigit() for c in last_part):
+                        sku = last_part
+
             if not full_name:
                 continue
 
@@ -68,6 +78,7 @@ async def scrape_page(page: Page) -> list[dict]:
                 "category": CATEGORY,
                 "brand": None,
                 "product_name": full_name,
+                "sku": sku,
                 "price": price,
                 "currency": "QAR",
                 "image_url": image_url,
@@ -80,34 +91,8 @@ async def scrape_page(page: Page) -> list[dict]:
     return products
 
 
-async def has_next_page(page: Page) -> str | None:
-    """Return URL of next page, or None if last page."""
-    try:
-        # Try different selector patterns for next page button
-        selectors = [
-            "a[rel='next']",
-            ".pagination .next:not(.disabled) a",
-            "[class*='next-page']:not([disabled])",
-            "a:has-text('Next')",
-            "[class*='pagination'] a[class*='next']",
-        ]
-        
-        for selector in selectors:
-            try:
-                next_btn = await page.query_selector(selector)
-                if next_btn:
-                    href = await next_btn.get_attribute("href")
-                    if href:
-                        return href if href.startswith("http") else BASE_URL + href
-            except:
-                pass
-    except Exception as e:
-        logger.debug(f"Rawabi: Error finding next page: {e}")
-    return None
-
-
 async def scrape(headless: bool = True) -> list[dict]:
-    """Main scraper entry point."""
+    """Main scraper entry point using infinite scroll."""
     all_products = []
     current_url = START_URL
 
@@ -119,28 +104,40 @@ async def scrape(headless: bool = True) -> list[dict]:
         )
         page = await context.new_page()
 
-        page_num = 1
-        while current_url:
-            logger.info(f"Rawabi: Scraping page {page_num}: {current_url}")
-            try:
-                await page.goto(current_url, wait_until="domcontentloaded", timeout=30000)
-                await asyncio.sleep(2)  # Let JS render
+        logger.info(f"Rawabi: Loading start URL: {current_url}")
+        try:
+            await page.goto(current_url, wait_until="domcontentloaded", timeout=45000)
+            await asyncio.sleep(3)  # Let initial items render
 
-                products = await scrape_page(page)
-                all_products.extend(products)
-                logger.info(f"Rawabi: Page {page_num} got {len(products)} products")
+            last_count = 0
+            no_change_count = 0
+            scroll_count = 0
+            max_scrolls = 40  # Safety limit
 
-                next_url = await has_next_page(page)
-                current_url = next_url
-                page_num += 1
+            while scroll_count < max_scrolls:
+                items = await page.query_selector_all(".product-card")
+                current_count = len(items)
+                logger.info(f"Rawabi: Scroll {scroll_count} - Found {current_count} items")
 
-                if page_num > 20:  # Safety limit
-                    logger.warning("Rawabi: Hit page limit (20), stopping")
-                    break
+                if current_count == last_count:
+                    no_change_count += 1
+                    if no_change_count >= 3:
+                        logger.info("Rawabi: Item count stable, reached end of list.")
+                        break
+                else:
+                    no_change_count = 0
 
-            except Exception as e:
-                logger.error(f"Rawabi: Error on page {page_num}: {e}")
-                break
+                last_count = current_count
+
+                # Scroll down
+                await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                await asyncio.sleep(2)
+                scroll_count += 1
+
+            all_products = await scrape_page(page)
+
+        except Exception as e:
+            logger.error(f"Rawabi: Error during scraping: {e}")
 
         await browser.close()
 
