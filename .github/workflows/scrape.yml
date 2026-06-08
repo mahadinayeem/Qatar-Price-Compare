@@ -51,6 +51,8 @@ jobs:
           # Only commit and push if there are changes
           if ! git diff --cached --quiet; then
             git commit -m "chore: update price data $(date -u '+%Y-%m-%d %H:%M UTC')"
+            # Clear any other unstaged changes to tracked files before pulling
+            git checkout -- .
             git pull --rebase origin main
             git push origin main
           else

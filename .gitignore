@@ -11,6 +11,8 @@ scraper/venv/
 
 # Data - keep DB in git for Vercel deployments
 # data/*.db  <-- intentionally tracked
+frontend/data/*.db-shm
+frontend/data/*.db-wal
 
 # OS
 .DS_Store
