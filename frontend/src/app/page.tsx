@@ -16,6 +16,11 @@ import {
   Grid,
   List,
   Crown,
+  AlertTriangle,
+  TrendingDown,
+  ArrowUpRight,
+  Apple,
+  Leaf,
 } from "lucide-react";
 import {
   Bar,
@@ -50,6 +55,33 @@ type PriceHistory = {
   date: string;
   company: string;
   price: number;
+};
+
+type CompareRow = {
+  sku: string;
+  product_name: string;
+  category: string;
+  origin: string;
+  unit: string;
+  our_price: number | null;
+  lulu_price: number | null;
+  rawabi_price: number | null;
+  family_price: number | null;
+  avg_competitor_price: number | null;
+  cheapest_competitor: string | null;
+  cheapest_competitor_price: number | null;
+  status: "Overpriced" | "Margin Opportunity" | "Competitive" | "No Match";
+  potential_saving: number | null;
+  potential_gain: number | null;
+  image_url: string | null;
+  product_group_id: number | null;
+};
+
+type CompareSummary = {
+  overpriced: number;
+  margin: number;
+  competitive: number;
+  no_match: number;
 };
 
 function fmt(price: number | null): string {
@@ -417,6 +449,13 @@ export default function Dashboard() {
   const [storeCounts, setStoreCounts] = useState<{ name: string; count: number }[]>([]);
   const [scraping, setScraping] = useState(false);
   const [scrapeError, setScrapeError] = useState<string | null>(null);
+  // Compare tab state
+  const [activeTab, setActiveTab] = useState<"market" | "compare">("market");
+  const [compareRows, setCompareRows] = useState<CompareRow[]>([]);
+  const [compareSummary, setCompareSummary] = useState<CompareSummary | null>(null);
+  const [compareLoading, setCompareLoading] = useState(false);
+  const [compareCategoryFilter, setCompareCategoryFilter] = useState<"All" | "Fruits" | "Vegetables">("All");
+  const [compareStatusFilter, setCompareStatusFilter] = useState<string>("All");
 
   const LIMIT = 50;
   const searchRef = useRef<NodeJS.Timeout>();
@@ -479,6 +518,26 @@ export default function Dashboard() {
     },
     [search, selectedTypes]
   );
+
+  const fetchCompare = useCallback(async () => {
+    setCompareLoading(true);
+    try {
+      const res = await fetch("/api/compare", { cache: "no-store" });
+      const data = await res.json();
+      setCompareRows(data.compare || []);
+      setCompareSummary(data.summary || null);
+    } catch (err) {
+      console.error("Failed to fetch compare data:", err);
+    } finally {
+      setCompareLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (activeTab === "compare" && compareRows.length === 0) {
+      fetchCompare();
+    }
+  }, [activeTab, fetchCompare, compareRows.length]);
 
   const handleRefresh = async () => {
     try {
@@ -647,8 +706,266 @@ export default function Dashboard() {
         </div>
       </div>
 
+      {/* Tab Switcher */}
+      <div className="sticky top-[65px] z-20 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/50 dark:border-white/[0.06]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="flex gap-1 pt-2">
+            <button
+              onClick={() => setActiveTab("market")}
+              className={`flex items-center gap-2 px-5 py-3 text-sm font-bold rounded-t-xl transition-all border-b-2 ${
+                activeTab === "market"
+                  ? "border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-500/5"
+                  : "border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+              }`}
+            >
+              <ShoppingCart size={15} /> Market Prices
+            </button>
+            <button
+              onClick={() => setActiveTab("compare")}
+              className={`flex items-center gap-2 px-5 py-3 text-sm font-bold rounded-t-xl transition-all border-b-2 ${
+                activeTab === "compare"
+                  ? "border-orange-500 text-orange-600 dark:text-orange-400 bg-orange-50/50 dark:bg-orange-500/5"
+                  : "border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+              }`}
+            >
+              <BarChart2 size={15} /> Price Compare
+              {compareSummary && compareSummary.overpriced > 0 && (
+                <span className="ml-1 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded-full">
+                  {compareSummary.overpriced}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Main Body container */}
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 relative">
+        {/* ═══════════════════════════════════════════════════════
+             PRICE COMPARE TAB
+        ═══════════════════════════════════════════════════════ */}
+        {activeTab === "compare" && (
+          <div className="animate-fade-in">
+            {/* Summary Alert Cards */}
+            {compareSummary && (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                <div className="glass-card p-4 border-l-4 border-red-500">
+                  <div className="flex items-center gap-2 mb-1">
+                    <AlertTriangle size={16} className="text-red-500" />
+                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Overpriced</span>
+                  </div>
+                  <p className="text-3xl font-black text-red-500">{compareSummary.overpriced}</p>
+                  <p className="text-xs text-slate-400 mt-1">Products priced above competitors</p>
+                </div>
+                <div className="glass-card p-4 border-l-4 border-amber-500">
+                  <div className="flex items-center gap-2 mb-1">
+                    <ArrowUpRight size={16} className="text-amber-500" />
+                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Margin Boost</span>
+                  </div>
+                  <p className="text-3xl font-black text-amber-500">{compareSummary.margin}</p>
+                  <p className="text-xs text-slate-400 mt-1">Can raise price & stay cheapest</p>
+                </div>
+                <div className="glass-card p-4 border-l-4 border-emerald-500">
+                  <div className="flex items-center gap-2 mb-1">
+                    <TrendingDown size={16} className="text-emerald-500" />
+                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Competitive</span>
+                  </div>
+                  <p className="text-3xl font-black text-emerald-500">{compareSummary.competitive}</p>
+                  <p className="text-xs text-slate-400 mt-1">Priced competitively</p>
+                </div>
+                <div className="glass-card p-4 border-l-4 border-slate-400">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Search size={16} className="text-slate-400" />
+                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">No Match</span>
+                  </div>
+                  <p className="text-3xl font-black text-slate-400">{compareSummary.no_match}</p>
+                  <p className="text-xs text-slate-400 mt-1">Not found in scraped data</p>
+                </div>
+              </div>
+            )}
+
+            {/* Filters Row */}
+            <div className="glass-card p-4 mb-6 flex flex-wrap gap-3 items-center">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Category:</span>
+              {(["All", "Fruits", "Vegetables"] as const).map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setCompareCategoryFilter(cat)}
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all border ${
+                    compareCategoryFilter === cat
+                      ? cat === "Fruits" ? "bg-orange-500 border-orange-500 text-white" : cat === "Vegetables" ? "bg-emerald-600 border-emerald-600 text-white" : "bg-slate-700 border-slate-700 text-white"
+                      : "bg-slate-50 dark:bg-slate-800/40 text-slate-600 dark:text-slate-400 border-slate-200/50 dark:border-white/[0.06] hover:bg-slate-100"
+                  }`}
+                >
+                  {cat === "Fruits" ? <Apple size={12} /> : cat === "Vegetables" ? <Leaf size={12} /> : null}
+                  {cat}
+                </button>
+              ))}
+              <span className="ml-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status:</span>
+              {(["All", "Overpriced", "Margin Opportunity", "Competitive"] as const).map((st) => (
+                <button
+                  key={st}
+                  onClick={() => setCompareStatusFilter(st)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all border ${
+                    compareStatusFilter === st
+                      ? st === "Overpriced" ? "bg-red-500 border-red-500 text-white" : st === "Margin Opportunity" ? "bg-amber-500 border-amber-500 text-white" : st === "Competitive" ? "bg-emerald-500 border-emerald-500 text-white" : "bg-slate-700 border-slate-700 text-white"
+                      : "bg-slate-50 dark:bg-slate-800/40 text-slate-600 dark:text-slate-400 border-slate-200/50 dark:border-white/[0.06] hover:bg-slate-100"
+                  }`}
+                >
+                  {st}
+                </button>
+              ))}
+              <button
+                onClick={fetchCompare}
+                disabled={compareLoading}
+                className="ml-auto flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200/50 dark:border-white/[0.06] transition disabled:opacity-50"
+              >
+                <RefreshCw size={12} className={compareLoading ? "animate-spin" : ""} />
+                {compareLoading ? "Loading..." : "Refresh"}
+              </button>
+            </div>
+
+            {/* Comparison Table */}
+            <div className="glass-card overflow-hidden mb-6">
+              <div className="overflow-x-auto">
+                {compareLoading ? (
+                  <div className="py-20 text-center">
+                    <RefreshCw size={32} className="mx-auto animate-spin text-orange-400 mb-3" />
+                    <p className="text-sm text-slate-400 font-medium">Loading comparison data...</p>
+                  </div>
+                ) : (
+                  <table className="price-table w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-slate-200/50 dark:border-white/[0.06] bg-slate-50/50 dark:bg-slate-900/50">
+                        <th className="px-4 py-3.5 text-left font-bold text-slate-400">Product</th>
+                        <th className="px-4 py-3.5 text-left font-bold text-slate-400">Category</th>
+                        <th className="px-4 py-3.5 text-left font-bold text-slate-400">Origin / Unit</th>
+                        <th className="px-4 py-3.5 text-right font-bold text-orange-600 dark:text-orange-400">Our Price</th>
+                        <th className="px-4 py-3.5 text-right font-bold text-green-600 dark:text-green-400">Rawabi</th>
+                        <th className="px-4 py-3.5 text-right font-bold text-blue-600 dark:text-blue-400">Family</th>
+                        <th className="px-4 py-3.5 text-right font-bold text-red-600 dark:text-red-400">Lulu</th>
+                        <th className="px-4 py-3.5 text-center font-bold text-slate-400">Status</th>
+                        <th className="px-4 py-3.5 text-right font-bold text-slate-400">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 dark:divide-white/[0.04]">
+                      {compareRows
+                        .filter((r) => compareCategoryFilter === "All" || r.category === compareCategoryFilter)
+                        .filter((r) => compareStatusFilter === "All" || r.status === compareStatusFilter)
+                        .sort((a, b) => {
+                          const order = { "Overpriced": 0, "Margin Opportunity": 1, "Competitive": 2, "No Match": 3 };
+                          return (order[a.status] ?? 4) - (order[b.status] ?? 4);
+                        })
+                        .map((row, idx) => (
+                          <tr key={idx} className={`transition-colors hover:bg-slate-50/50 dark:hover:bg-slate-800/10 ${
+                            row.status === "Overpriced" ? "bg-red-50/30 dark:bg-red-500/5" :
+                            row.status === "Margin Opportunity" ? "bg-amber-50/30 dark:bg-amber-500/5" : ""
+                          }`}>
+                            <td className="px-4 py-3">
+                              <div className="flex items-center gap-2.5">
+                                {row.image_url ? (
+                                  // eslint-disable-next-line @next/next/no-img-element
+                                  <img src={row.image_url} alt={row.product_name} className="h-9 w-9 rounded-lg object-cover bg-white border dark:border-slate-800" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                                ) : (
+                                  <div className="h-9 w-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center"><ShoppingCart size={14} className="text-slate-300" /></div>
+                                )}
+                                <span className="font-bold text-slate-800 dark:text-slate-200 line-clamp-2 max-w-[160px]">{row.product_name}</span>
+                              </div>
+                            </td>
+                            <td className="px-4 py-3">
+                              <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                                row.category === "Fruits"
+                                  ? "bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-200/40 dark:border-orange-500/20"
+                                  : "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-200/40 dark:border-emerald-500/20"
+                              }`}>
+                                {row.category === "Fruits" ? <Apple size={9} /> : <Leaf size={9} />}
+                                {row.category || "—"}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3">
+                              <div className="text-xs text-slate-500 dark:text-slate-400">
+                                {row.origin && <span className="font-medium">{row.origin}</span>}
+                                {row.origin && row.unit && " · "}
+                                {row.unit && <span>{row.unit}</span>}
+                              </div>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <span className="text-sm font-extrabold text-orange-600 dark:text-orange-400 tabular-nums">
+                                {row.our_price != null ? `${row.our_price.toFixed(2)} Q` : "—"}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <span className="text-sm tabular-nums text-slate-700 dark:text-slate-300">
+                                {row.rawabi_price != null ? `${row.rawabi_price.toFixed(2)}` : <span className="text-slate-300 dark:text-slate-700">—</span>}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <span className="text-sm tabular-nums text-slate-700 dark:text-slate-300">
+                                {row.family_price != null ? `${row.family_price.toFixed(2)}` : <span className="text-slate-300 dark:text-slate-700">—</span>}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <span className="text-sm tabular-nums text-slate-700 dark:text-slate-300">
+                                {row.lulu_price != null ? `${row.lulu_price.toFixed(2)}` : <span className="text-slate-300 dark:text-slate-700">—</span>}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-center">
+                              <span className={`inline-flex items-center gap-1 text-[10px] font-extrabold px-2.5 py-1 rounded-full border ${
+                                row.status === "Overpriced"
+                                  ? "bg-red-100 dark:bg-red-500/10 text-red-600 dark:text-red-400 border-red-200/50 dark:border-red-500/20"
+                                  : row.status === "Margin Opportunity"
+                                  ? "bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-200/50 dark:border-amber-500/20"
+                                  : row.status === "Competitive"
+                                  ? "bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-200/50 dark:border-emerald-500/20"
+                                  : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border-slate-200/50 dark:border-slate-700"
+                              }`}>
+                                {row.status === "Overpriced" && <AlertTriangle size={9} />}
+                                {row.status === "Margin Opportunity" && <ArrowUpRight size={9} />}
+                                {row.status === "Competitive" && <TrendingDown size={9} />}
+                                {row.status}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              {row.status === "Overpriced" && row.potential_saving != null && (
+                                <span className="text-xs font-bold text-red-500">↓ {row.potential_saving.toFixed(2)} Q too high</span>
+                              )}
+                              {row.status === "Margin Opportunity" && row.potential_gain != null && (
+                                <span className="text-xs font-bold text-amber-600 dark:text-amber-400">↑ Raise by {row.potential_gain.toFixed(2)} Q</span>
+                              )}
+                              {row.status === "Competitive" && (
+                                <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">✓ Good</span>
+                              )}
+                              {row.status === "No Match" && (
+                                <span className="text-xs text-slate-400">Not scraped</span>
+                              )}
+                            </td>
+                          </tr>
+                        ))
+                      }
+                      {!compareLoading && compareRows.filter((r) => compareCategoryFilter === "All" || r.category === compareCategoryFilter).filter((r) => compareStatusFilter === "All" || r.status === compareStatusFilter).length === 0 && (
+                        <tr>
+                          <td colSpan={9} className="py-16 text-center text-slate-400 dark:text-slate-500">
+                            <ShoppingCart size={36} className="mx-auto mb-3 opacity-25" />
+                            <p className="font-bold">No items found. Make sure your Google Sheet has data and the scraper has run today.</p>
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+            </div>
+            <p className="text-center text-xs text-slate-400 dark:text-slate-500 font-medium mb-4">
+              Comparison is based on today&apos;s scraped data vs your Google Sheet prices. Run the scraper to get fresh data.
+            </p>
+          </div>
+        )}
+
+        {/* ═══════════════════════════════════════════════════════
+             MARKET VIEW TAB (existing content wrapped)
+        ═══════════════════════════════════════════════════════ */}
+        {activeTab === "market" && (
+          <div className="animate-fade-in">
         {/* Statistics Charts */}
         {showChart && storeCounts.length > 0 && (
           <div className="mb-6 glass-card p-5 animate-fade-in">
@@ -1098,6 +1415,8 @@ export default function Dashboard() {
         <p className="mt-8 text-center text-xs text-slate-400 dark:text-slate-500 font-medium">
           Prices parsed and updated dynamically every 6 hours via GitHub Actions workflow scheduler. All prices shown in QAR.
         </p>
+          </div>
+        )}
       </main>
       {/* Selected Product modal */}
       {selectedProduct && (
