@@ -49,23 +49,37 @@ jobs:
       - name: Install Playwright Chromium
         run: python -m playwright install --with-deps chromium
 
-      # 5. Run scraper (saves to SQLite) + export CSV + upload to Drive
+      # 5. Check env vars are set (debug)
+      - name: Verify secrets are available
+        run: |
+          if [ -z "$GOOGLE_CREDENTIALS" ]; then
+            echo "WARNING: GOOGLE_CREDENTIALS is EMPTY"
+          else
+            echo "OK: GOOGLE_CREDENTIALS is set (length: ${#GOOGLE_CREDENTIALS})"
+          fi
+          if [ -z "$GOOGLE_DRIVE_FOLDER_ID" ]; then
+            echo "WARNING: GOOGLE_DRIVE_FOLDER_ID is EMPTY"
+          else
+            echo "OK: GOOGLE_DRIVE_FOLDER_ID is set: $GOOGLE_DRIVE_FOLDER_ID"
+          fi
+
+      # 6. Run scraper (saves to SQLite) + export CSV + upload to Drive
       - name: Run scraper & export
         working-directory: scraper
         run: python main.py
 
-      # 6. Commit & push updated SQLite DB back to repo (so Vercel can read it)
-      - name: Commit updated database
+      # 7. Commit & push updated DB + master CSV back to repo
+      - name: Commit updated database and master CSV
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add frontend/data/products.db
           if [ -d data/daily ]; then git add data/daily/; fi
-          
+          if [ -f data/master_prices.csv ]; then git add data/master_prices.csv; fi
+
           # Only commit and push if there are changes
           if ! git diff --cached --quiet; then
             git commit -m "chore: daily scrape $(date -u +'%Y-%m-%d')"
-            # Clear any other unstaged changes to tracked files before pulling
             git checkout -- .
             git pull --rebase origin main
             git push origin main

@@ -338,7 +338,7 @@ def upload_master_csv(service, folder_id: str, csv_content: str, existing_file_i
 # ── Main entry point ───────────────────────────────────────────────────────────
 
 def export_and_upload():
-    """Full pipeline: build CSV → merge with Drive master → upload."""
+    """Full pipeline: build CSV → merge with local/Drive master → upload."""
     today = date.today().isoformat()
     folder_id = os.environ.get("GOOGLE_DRIVE_FOLDER_ID")
 
@@ -351,20 +351,31 @@ def export_and_upload():
         logger.warning("export_csv: No rows found for today. Nothing to export.")
         return
 
-    # 2. Download existing master CSV from Drive (if available)
+    # 2. Load existing master CSV. Try local file first, then fallback to Google Drive.
     master_rows: list[dict] = []
     existing_file_id: str | None = None
+    service = None
+
+    local_master_path = os.path.join(os.path.dirname(__file__), "..", "data", MASTER_FILENAME)
+    if os.path.exists(local_master_path):
+        try:
+            with open(local_master_path, "r", encoding="utf-8") as f:
+                raw = f.read()
+            master_rows = csv_string_to_rows(raw)
+            logger.info(f"export_csv: Loaded local master from {local_master_path} with {len(master_rows)} existing rows")
+        except Exception as e:
+            logger.error(f"export_csv: Could not read local master file: {e}")
 
     if folder_id:
         try:
             service = _build_drive_service()
             existing_file_id = find_master_file(service, folder_id)
-            if existing_file_id:
+            if not master_rows and existing_file_id:
                 raw = download_master_csv(service, existing_file_id)
                 master_rows = csv_string_to_rows(raw)
-                logger.info(f"export_csv: Downloaded master with {len(master_rows)} existing rows")
+                logger.info(f"export_csv: Downloaded master from Drive with {len(master_rows)} existing rows")
         except Exception as e:
-            logger.error(f"export_csv: Could not download master from Drive: {e}")
+            logger.error(f"export_csv: Could not check/download master from Drive: {e}")
 
     # 3. Detect Market Out products
     market_out_rows = detect_market_out(today_rows, master_rows, today)
@@ -378,16 +389,22 @@ def export_and_upload():
     # 5. Serialise to CSV
     csv_content = rows_to_csv_string(final_rows)
 
-    # 6. Save locally as backup (always)
+    # 6. Save locally (always)
+    # Save daily backup
     local_dir = os.path.join(os.path.dirname(__file__), "..", "data", "daily")
     os.makedirs(local_dir, exist_ok=True)
     local_path = os.path.join(local_dir, f"{today}.csv")
     with open(local_path, "w", newline="", encoding="utf-8") as f:
         f.write(csv_content)
-    logger.info(f"export_csv: Saved local CSV → {local_path}")
+    logger.info(f"export_csv: Saved local CSV backup → {local_path}")
+
+    # Save master CSV in the data folder
+    with open(local_master_path, "w", newline="", encoding="utf-8") as f:
+        f.write(csv_content)
+    logger.info(f"export_csv: Saved local master CSV → {local_master_path}")
 
     # 7. Upload to Google Drive
-    if folder_id:
+    if folder_id and service:
         try:
             upload_master_csv(service, folder_id, csv_content, existing_file_id)
             logger.info("export_csv: Upload to Google Drive complete ✓")
