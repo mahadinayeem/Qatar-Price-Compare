@@ -1,0 +1,89 @@
+date,category,product_name,product_type,origin,unit,lulu_price,rawabi_price,family_price,price_per_kg_lulu,price_per_kg_rawabi,price_per_kg_family,cheapest_store,status
+2026-06-09,Fruits,Banana Flower,Banana,India,,,,17.5,,,,,Active
+2026-06-09,Fruits,Banana Green,Banana,India,,,,4.25,,,,,Active
+2026-06-09,Fruits,Physalis,Berries,,125g,,,15.0,,,120.0,Family,Active
+2026-06-09,Fruits,Fresh Coconut (By Air),Coconut,India,,,,7.0,,,,,Active
+2026-06-09,Fruits,Mushroom Chestnut -,Fresh Nuts,Holland,,,,15.5,,,,,Active
+2026-06-09,Vegetables,Beetroot Cooked,Beetroot,,500g,,,22.0,,,44.0,Family,Active
+2026-06-09,Vegetables,Broccoli,Cabbage & Broccoli,,,,,9.0,,,,,Active
+2026-06-09,Vegetables,Cabbage,Cabbage & Broccoli,India,,,,8.75,,,,,Active
+2026-06-09,Vegetables,Cabbage Sliced,Cabbage & Broccoli,,1kg,,,10.0,,,10.0,Family,Active
+2026-06-09,Vegetables,Kohi,Cabbage & Broccoli,Bangladesh,,,,17.0,,,,,Active
+2026-06-09,Vegetables,Capsicum,Capsicum,Qatar,,,,6.0,,,,,Active
+2026-06-09,Vegetables,Capsicum Mix Pkt,Capsicum,Holland,4.0pcs,,,29.0,,,7250.0,Family,Active
+2026-06-09,Vegetables,Capsicum Orange,Capsicum,Holland,,,,11.0,,,,,Active
+2026-06-09,Vegetables,Capsicum Red,Capsicum,Holland,,,,12.0,,,,,Active
+2026-06-09,Vegetables,Capsicum Yellow,Capsicum,Holland,,,,11.25,,,,,Active
+2026-06-09,Vegetables,Carrot,Carrots,Australia,,,,4.75,,,,,Active
+2026-06-09,Vegetables,Chow Chow (Chayote),Chayote,India,,,,8.75,,,,,Active
+2026-06-09,Vegetables,Chilly Red,Chillies & Spicy,Holland,,,,24.5,,,,,Active
+2026-06-09,Vegetables,Chilly Round Green,Chillies & Spicy,India,,,,9.5,,,,,Active
+2026-06-09,Vegetables,Ginger,Chillies & Spicy,China,,,,2.0,,,,,Active
+2026-06-09,Vegetables,Green Chilli,Chillies & Spicy,Uganda,,,,6.0,,,,,Active
+2026-06-09,Vegetables,Green Chilli,Chillies & Spicy,India,,,,2.5,,,,,Active
+2026-06-09,Vegetables,Jalapeno Hot Red Pepper,Chillies & Spicy,Usa,,,,82.0,,,,,Active
+2026-06-09,Vegetables,Mixed Chilli Red & Green Pkt,Chillies & Spicy,,,,,8.0,,,,,Active
+2026-06-09,Vegetables,Pinakbet Mixed,Combo Pack,,1kg,,,25.0,,,25.0,Family,Active
+2026-06-09,Vegetables,Sambar Mixed Vegetable,Combo Pack,,,,,10.0,,,,,Active
+2026-06-09,Vegetables,Baby Corn,Corns & Baby Corn,Thailand,125g,,,8.0,,,64.0,Family,Active
+2026-06-09,Vegetables,Fruit'O Snack Boiled Sweet Corn Cob,Corns & Baby Corn,,270g,,,6.0,,,22.22,Family,Active
+2026-06-09,Vegetables,Sweet Corn,Corns & Baby Corn,Jordan,,,,5.0,,,,,Active
+2026-06-09,Vegetables,Cucumber,Cucumber,Qatar,,,,3.0,,,,,Active
+2026-06-09,Vegetables,Vellary Indian,Cucumber,India,1kg,,,19.0,,,19.0,Family,Active
+2026-06-09,Vegetables,Garlic,Garlic,Egypt,,,,8.0,,,,,Active
+2026-06-09,Vegetables,Garlic,Garlic,India,,,,12.25,,,,,Active
+2026-06-09,Vegetables,Garlic Loose,Garlic,,,,,2.0,,,,,Active
+2026-06-09,Vegetables,Garlic Small Pkt ( ),Garlic,China,,,,5.0,,,,,Active
+2026-06-09,Vegetables,Ash Gourd(Kumbalam),Gourds,India,,,,17.5,,,,,Active
+2026-06-09,Vegetables,Dhundul,Gourds,Bangladesh,,,,17.0,,,,,Active
+2026-06-09,Vegetables,Ivy Gourd (Tindly),Gourds,India,,,,10.0,,,,,Active
+2026-06-09,Vegetables,Ridge Gourd,Gourds,India,,,,9.75,,,,,Active
+2026-06-09,Vegetables,Snake Gourd,Gourds,India,,,,9.0,,,,,Active
+2026-06-09,Vegetables,Celery,Herbs,Spain,,,,19.0,,,,,Active
+2026-06-09,Vegetables,Coriander (Ksa),Herbs,,,,,3.25,,,,,Active
+2026-06-09,Vegetables,Fennel,Herbs,,,,,22.5,,,,,Active
+2026-06-09,Vegetables,Green Basil ( ),Herbs,Kenya,,,,16.0,,,,,Active
+2026-06-09,Vegetables,Lemon Grass,Herbs,,,,,5.5,,,,,Active
+2026-06-09,Vegetables,Parsely (Ksa),Herbs,,,,,10.0,,,,,Active
+2026-06-09,Vegetables,Thyme Green Thin,Herbs,,,,,16.0,,,,,Active
+2026-06-09,Vegetables,Bhindi (Lady'S Finger),Lady Finger,India,,,,9.0,,,,,Active
+2026-06-09,Vegetables,Baby Spinach,Leafy Vegetables,Italy,125g,,,14.0,,,112.0,Family,Active
+2026-06-09,Vegetables,Lettuce Bionda/ Rossa Mix,Leafy Vegetables,,125g,,,14.0,,,112.0,Family,Active
+2026-06-09,Vegetables,Lettuce Boston Soft,Leafy Vegetables,Holland,,,,16.25,,,,,Active
+2026-06-09,Vegetables,Lettuce Gem Tray,Leafy Vegetables,Spain,,,,17.0,,,,,Active
+2026-06-09,Vegetables,Lettuce Iceberg,Leafy Vegetables,,,,,24.0,,,,,Active
+2026-06-09,Vegetables,Lettuce Lollo Rossa,Leafy Vegetables,,,,,18.75,,,,,Active
+2026-06-09,Vegetables,Red Chard Mix,Leafy Vegetables,Italy,125g,,,10.0,,,80.0,Family,Active
+2026-06-09,Vegetables,Rocket Leaves,Leafy Vegetables,Italy,125g,,,14.0,,,112.0,Family,Active
+2026-06-09,Vegetables,Leeks,Leeks/Spring Onions,Holland,,,,9.5,,,,,Active
+2026-06-09,Vegetables,Agrico Mushroom White Bottom,Mushrooms,Qatar,250g,,,7.0,,,28.0,Family,Active
+2026-06-09,Vegetables,Mushroom Slice,Mushrooms,Qatar,,,,8.5,,,,,Active
+2026-06-09,Vegetables,Mushrooms Portobello,Mushrooms,,,,,19.5,,,,,Active
+2026-06-09,Vegetables,Shimenji White Mushroom,Mushrooms,,150g,,,12.0,,,80.0,Family,Active
+2026-06-09,Vegetables,Onion Small,Onion,India,,,,5.0,,,,,Active
+2026-06-09,Vegetables,Onion Yemen,Onion,,,,,4.5,,,,,Active
+2026-06-09,Vegetables,Aloe Vera,Other Vegetables,,,,,30.0,,,,,Active
+2026-06-09,Vegetables,Amla (Gooseberry),Other Vegetables,India,,,,10.75,,,,,Active
+2026-06-09,Vegetables,Bagal,Other Vegetables,,,,,5.0,,,,,Active
+2026-06-09,Vegetables,Drumstick,Other Vegetables,India,,,,7.5,,,,,Active
+2026-06-09,Vegetables,Drumstick Leaves Pkt ( ),Other Vegetables,India,150g,,,5.5,,,36.67,Family,Active
+2026-06-09,Vegetables,Eggplant,Other Vegetables,Holland,,,,28.0,,,,,Active
+2026-06-09,Vegetables,Beans,Peas & Beans,Qatar,,,,7.5,,,,,Active
+2026-06-09,Vegetables,Cluster Beans,Peas & Beans,India,,,,9.5,,,,,Active
+2026-06-09,Vegetables,Peas Mangetout/Snow/Podded Peas,Peas & Beans,,250g,,,14.0,,,56.0,Family,Active
+2026-06-09,Vegetables,Aravi Big,Potatoes & Starchy Vegetables,India,,,,8.75,,,,,Active
+2026-06-09,Vegetables,Potato,Potatoes & Starchy Vegetables,,,,,3.0,,,,,Active
+2026-06-09,Vegetables,Potatoes White Chat Small,Potatoes & Starchy Vegetables,Australia,,,,28.0,,,,,Active
+2026-06-09,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,India,,,,8.75,,,,,Active
+2026-06-09,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,Bangladesh,,,,17.0,,,,,Active
+2026-06-09,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,Usa,,,,16.0,,,,,Active
+2026-06-09,Vegetables,Yam Indian,Potatoes & Starchy Vegetables,India,,,,6.5,,,,,Active
+2026-06-09,Vegetables,Pumpkin Mathan Green,Pumpkin,India,,,,13.75,,,,,Active
+2026-06-09,Vegetables,Pumpkin Medium,Pumpkin,India,,,,8.75,,,,,Active
+2026-06-09,Vegetables,White Pumpkin,Pumpkin,Qatar,,,,7.5,,,,,Active
+2026-06-09,Vegetables,Red Radish,Raddish,Holland,1kg,,,37.0,,,37.0,Family,Active
+2026-06-09,Vegetables,Red Radish Poly Bag,Raddish,,125g,,,6.5,,,52.0,Family,Active
+2026-06-09,Vegetables,Mung Bean Sprouts Pkts,Sprouts,,,,,6.5,,,,,Active
+2026-06-09,Vegetables,Tomato Tommys Pkt ( ),Tomato,Spain,500g,,,44.0,,,88.0,Family,Active
+2026-06-09,Vegetables,Tomatoes Cherry Plum,Tomato,,250g,,,20.0,,,80.0,Family,Active
+2026-06-09,Vegetables,Turmeric,Turmeric,India,,,,3.5,,,,,Active
