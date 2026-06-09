@@ -26,9 +26,12 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Cell,
   Legend,
   Line,
   LineChart,
+  Pie,
+  PieChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -824,6 +827,166 @@ export default function Dashboard() {
                   </div>
                   <p className="text-3xl font-black text-slate-400">{compareSummary.no_match}</p>
                   <p className="text-xs text-slate-400 mt-1">Not found in scraped data</p>
+                </div>
+              </div>
+            )}
+            {/* ── Analytics Charts Section ── */}
+            {compareRows.length > 0 && (
+              <div className="mb-6 space-y-4">
+                {/* Row 1: KPI strip */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {(() => {
+                    const totalSaving = compareRows
+                      .filter(r => r.status === "Overpriced" && r.potential_saving != null)
+                      .reduce((s, r) => s + (r.potential_saving ?? 0), 0);
+                    const totalGain = compareRows
+                      .filter(r => r.status === "Margin Opportunity" && r.potential_gain != null)
+                      .reduce((s, r) => s + (r.potential_gain ?? 0), 0);
+                    const fruitsCount = compareRows.filter(r => r.category === "Fruits" && r.status !== "No Match").length;
+                    const vegCount = compareRows.filter(r => r.category === "Vegetables" && r.status !== "No Match").length;
+                    return (
+                      <>
+                        <div className="glass-card p-4 flex flex-col gap-1">
+                          <p className="text-[10px] font-bold text-red-500 uppercase tracking-wider">Total Overprice Gap</p>
+                          <p className="text-2xl font-black text-red-500">{totalSaving.toFixed(2)} <span className="text-xs font-bold">QAR</span></p>
+                          <p className="text-[10px] text-slate-400">Sum of over-charged amounts</p>
+                        </div>
+                        <div className="glass-card p-4 flex flex-col gap-1">
+                          <p className="text-[10px] font-bold text-amber-500 uppercase tracking-wider">Margin Opportunity</p>
+                          <p className="text-2xl font-black text-amber-500">{totalGain.toFixed(2)} <span className="text-xs font-bold">QAR</span></p>
+                          <p className="text-[10px] text-slate-400">Potential revenue uplift</p>
+                        </div>
+                        <div className="glass-card p-4 flex flex-col gap-1">
+                          <p className="text-[10px] font-bold text-orange-500 uppercase tracking-wider">Fruits Matched</p>
+                          <p className="text-2xl font-black text-orange-500">{fruitsCount}</p>
+                          <p className="text-[10px] text-slate-400">Fruit products found in market</p>
+                        </div>
+                        <div className="glass-card p-4 flex flex-col gap-1">
+                          <p className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Vegetables Matched</p>
+                          <p className="text-2xl font-black text-emerald-500">{vegCount}</p>
+                          <p className="text-[10px] text-slate-400">Vegetable products found in market</p>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+
+                {/* Row 2: Charts */}
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                  {/* Chart 1: Status Breakdown Donut */}
+                  {(() => {
+                    const matched = compareRows.filter(r => r.status !== "No Match");
+                    const statusData = [
+                      { name: "Overpriced", value: matched.filter(r => r.status === "Overpriced").length, color: "#ef4444" },
+                      { name: "Margin Boost", value: matched.filter(r => r.status === "Margin Opportunity").length, color: "#f59e0b" },
+                      { name: "Competitive", value: matched.filter(r => r.status === "Competitive").length, color: "#10b981" },
+                      { name: "No Match", value: compareRows.filter(r => r.status === "No Match").length, color: "#94a3b8" },
+                    ].filter(d => d.value > 0);
+                    return (
+                      <div className="glass-card p-4 col-span-1">
+                        <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                          <BarChart2 size={13} className="text-orange-500" /> Price Status Breakdown
+                        </h3>
+                        <ResponsiveContainer width="100%" height={160}>
+                          <PieChart>
+                            <Pie data={statusData} cx="50%" cy="50%" innerRadius={40} outerRadius={65} paddingAngle={3} dataKey="value">
+                              {statusData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
+                            </Pie>
+                            <Tooltip
+                              contentStyle={{ backgroundColor: "rgba(15,23,42,0.95)", borderColor: "rgba(255,255,255,0.1)", borderRadius: "10px", color: "#fff", fontSize: 11 }}
+                              formatter={(v: number, name: string) => [`${v} products`, name]}
+                            />
+                            <Legend iconSize={8} wrapperStyle={{ fontSize: "10px" }} />
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+                    );
+                  })()}
+
+                  {/* Chart 2: Category Split */}
+                  {(() => {
+                    const catData = [
+                      { name: "Fruits", Overpriced: compareRows.filter(r => r.category === "Fruits" && r.status === "Overpriced").length, Competitive: compareRows.filter(r => r.category === "Fruits" && r.status === "Competitive").length, "Margin Boost": compareRows.filter(r => r.category === "Fruits" && r.status === "Margin Opportunity").length },
+                      { name: "Vegetables", Overpriced: compareRows.filter(r => r.category === "Vegetables" && r.status === "Overpriced").length, Competitive: compareRows.filter(r => r.category === "Vegetables" && r.status === "Competitive").length, "Margin Boost": compareRows.filter(r => r.category === "Vegetables" && r.status === "Margin Opportunity").length },
+                    ];
+                    return (
+                      <div className="glass-card p-4 col-span-1">
+                        <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                          <Apple size={13} className="text-orange-500" /> Category Breakdown
+                        </h3>
+                        <ResponsiveContainer width="100%" height={160}>
+                          <BarChart data={catData} barSize={26}>
+                            <CartesianGrid stroke="rgba(148,163,184,0.07)" strokeDasharray="3 3" vertical={false} />
+                            <XAxis dataKey="name" tick={{ fontSize: 10, fill: "#94a3b8" }} stroke="none" />
+                            <YAxis tick={{ fontSize: 9, fill: "#94a3b8" }} stroke="none" />
+                            <Tooltip contentStyle={{ backgroundColor: "rgba(15,23,42,0.95)", borderColor: "rgba(255,255,255,0.1)", borderRadius: "10px", color: "#fff", fontSize: 11 }} />
+                            <Bar dataKey="Overpriced" stackId="a" fill="#ef4444" radius={[0,0,0,0]} />
+                            <Bar dataKey="Margin Boost" stackId="a" fill="#f59e0b" />
+                            <Bar dataKey="Competitive" stackId="a" fill="#10b981" radius={[4,4,0,0]} />
+                            <Legend iconSize={8} wrapperStyle={{ fontSize: "10px" }} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    );
+                  })()}
+
+                  {/* Chart 3: Top Origins */}
+                  {(() => {
+                    const originMap: Record<string, number> = {};
+                    compareRows.filter(r => r.status !== "No Match" && r.origin).forEach(r => {
+                      const o = r.origin || "Unknown";
+                      originMap[o] = (originMap[o] || 0) + 1;
+                    });
+                    const originData = Object.entries(originMap)
+                      .sort((a, b) => b[1] - a[1])
+                      .slice(0, 6)
+                      .map(([name, value]) => ({ name, value }));
+                    return (
+                      <div className="glass-card p-4 col-span-1">
+                        <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                          <Leaf size={13} className="text-emerald-500" /> Top Origins
+                        </h3>
+                        <ResponsiveContainer width="100%" height={160}>
+                          <BarChart data={originData} layout="vertical" barSize={10}>
+                            <CartesianGrid stroke="rgba(148,163,184,0.07)" strokeDasharray="3 3" horizontal={false} />
+                            <XAxis type="number" tick={{ fontSize: 9, fill: "#94a3b8" }} stroke="none" />
+                            <YAxis type="category" dataKey="name" tick={{ fontSize: 9, fill: "#94a3b8" }} width={56} stroke="none" />
+                            <Tooltip contentStyle={{ backgroundColor: "rgba(15,23,42,0.95)", borderColor: "rgba(255,255,255,0.1)", borderRadius: "10px", color: "#fff", fontSize: 11 }} formatter={(v: number) => [`${v} products`]} />
+                            <Bar dataKey="value" fill="#6366f1" radius={[0,4,4,0]} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    );
+                  })()}
+
+                  {/* Chart 4: Cheapest Competitor */}
+                  {(() => {
+                    const storeMap: Record<string, number> = { Lulu: 0, Rawabi: 0, Family: 0 };
+                    compareRows.filter(r => r.cheapest_competitor).forEach(r => {
+                      const s = r.cheapest_competitor || "";
+                      if (s in storeMap) storeMap[s] = (storeMap[s] || 0) + 1;
+                    });
+                    const storeColors: Record<string, string> = { Lulu: "#ef4444", Rawabi: "#16a34a", Family: "#2563eb" };
+                    const storeData = Object.entries(storeMap).map(([name, value]) => ({ name, value, fill: storeColors[name] || "#64748b" }));
+                    return (
+                      <div className="glass-card p-4 col-span-1">
+                        <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                          <Crown size={13} className="text-yellow-500" /> Cheapest Competitor Wins
+                        </h3>
+                        <ResponsiveContainer width="100%" height={160}>
+                          <BarChart data={storeData} barSize={36}>
+                            <CartesianGrid stroke="rgba(148,163,184,0.07)" strokeDasharray="3 3" vertical={false} />
+                            <XAxis dataKey="name" tick={{ fontSize: 10, fill: "#94a3b8" }} stroke="none" />
+                            <YAxis tick={{ fontSize: 9, fill: "#94a3b8" }} stroke="none" />
+                            <Tooltip contentStyle={{ backgroundColor: "rgba(15,23,42,0.95)", borderColor: "rgba(255,255,255,0.1)", borderRadius: "10px", color: "#fff", fontSize: 11 }} formatter={(v: number) => [`${v} times cheapest`]} />
+                            <Bar dataKey="value" radius={[6,6,0,0]}>
+                              {storeData.map((entry, i) => <Cell key={i} fill={entry.fill} />)}
+                            </Bar>
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
             )}
