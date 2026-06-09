@@ -107,6 +107,32 @@ function formatProductUnit(weight: number | null, unit: string | null): string {
   return `${weight}${unit}`;
 }
 
+// Mirrors Python get_display_name() — strips origin country and unit from canonical product name.
+const COUNTRY_TOKENS = [
+  "qatar", "china", "india", "egypt", "uganda", "italy", "holland",
+  "australia", "usa", "south africa", "pakistan", "bangladesh",
+  "morocco", "spain", "saudi", "ecuador", "brazil", "france", "kenya", "oman",
+  "lebanon", "jordan", "iran", "vietnam", "thailand", "philippines", "mexico",
+  "chile", "peru", "sri lanka", "turkey",
+];
+
+function getCleanProductName(name: string): string {
+  if (!name) return "";
+  let cleaned = name;
+  // Remove weight/unit patterns (e.g. "250gm", "1kg", "500ml")
+  cleaned = cleaned.replace(/(\d+(?:\.\d+)?)\s*(kg|g|gm|gram|grams|ml|ltr|l|pcs|pc|pkt)\b/gi, " ");
+  // Remove country tokens (longest first to avoid partial matches)
+  const sortedCountries = [...COUNTRY_TOKENS].sort((a, b) => b.length - a.length);
+  for (const country of sortedCountries) {
+    cleaned = cleaned.replace(new RegExp(`\\b${country}\\b`, "gi"), " ");
+  }
+  // Collapse extra spaces and title-case
+  cleaned = cleaned.replace(/\s+/g, " ").trim();
+  return cleaned
+    ? cleaned.replace(/\b\w/g, (c) => c.toUpperCase())
+    : name.trim();
+}
+
 function lowestPrice(p: Product): "rawabi" | "family" | "lulu" | null {
   const vals = [
     ["rawabi", p.rawabi_price],
@@ -232,7 +258,7 @@ function ProductModal({
           )}
           <div>
             <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              {product.product_name}
+              {getCleanProductName(product.product_name)}
             </h2>
             {product.sku && (
               <p className="mt-0.5 text-xs font-bold text-brand-600 dark:text-brand-400">
@@ -1251,7 +1277,7 @@ export default function Dashboard() {
                           </div>
 
                           <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 line-clamp-2 mt-3 leading-snug">
-                            {product.product_name}
+                            {getCleanProductName(product.product_name)}
                           </h3>
                           <div className="mt-2 flex flex-wrap gap-1.5">
                             {product.origin_country && (
@@ -1372,7 +1398,7 @@ export default function Dashboard() {
                             </td>
                             <td className="px-4 py-3">
                               <span className="line-clamp-2 font-bold text-slate-800 dark:text-slate-200">
-                                {product.product_name}
+                                {getCleanProductName(product.product_name)}
                               </span>
                             </td>
                             <td className="px-4 py-3">
