@@ -89,6 +89,24 @@ function fmt(price: number | null): string {
   return `${price.toFixed(2)} QAR`;
 }
 
+function formatProductUnit(weight: number | null, unit: string | null): string {
+  if (weight == null || !unit) return "-";
+  const u = unit.toLowerCase();
+  if (u === "g") {
+    if (weight >= 1000 && weight % 1000 === 0) {
+      return `${weight / 1000}kg`;
+    }
+    return `${weight}g`;
+  }
+  if (u === "ml") {
+    if (weight >= 1000 && weight % 1000 === 0) {
+      return `${weight / 1000}ltr`;
+    }
+    return `${weight}ml`;
+  }
+  return `${weight}${unit}`;
+}
+
 function lowestPrice(p: Product): "rawabi" | "family" | "lulu" | null {
   const vals = [
     ["rawabi", p.rawabi_price],
@@ -1235,6 +1253,18 @@ export default function Dashboard() {
                           <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 line-clamp-2 mt-3 leading-snug">
                             {product.product_name}
                           </h3>
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            {product.origin_country && (
+                              <span className="inline-flex items-center bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-blue-500/20">
+                                {product.origin_country}
+                              </span>
+                            )}
+                            {(product.standard_weight || product.standard_unit) && (
+                              <span className="inline-flex items-center bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-orange-500/20">
+                                {formatProductUnit(product.standard_weight, product.standard_unit)}
+                              </span>
+                            )}
+                          </div>
                         </div>
 
                         <div className="mt-4">
@@ -1288,6 +1318,8 @@ export default function Dashboard() {
                       <th className="min-w-[200px] px-4 py-3.5 text-left font-bold text-slate-400">Common Product</th>
                       <th className="px-4 py-3.5 text-left font-bold text-slate-400">SKU</th>
                       <th className="px-4 py-3.5 text-left font-bold text-slate-400">Type</th>
+                      <th className="px-4 py-3.5 text-left font-bold text-slate-400">Origin</th>
+                      <th className="px-4 py-3.5 text-left font-bold text-slate-400">Unit</th>
                       <th className="px-4 py-3.5 text-right font-bold text-green-600 dark:text-green-500">Rawabi</th>
                       <th className="px-4 py-3.5 text-right font-bold text-blue-600 dark:text-blue-500">Family</th>
                       <th className="px-4 py-3.5 text-right font-bold text-red-600 dark:text-red-500">Lulu</th>
@@ -1299,7 +1331,7 @@ export default function Dashboard() {
                     {loading ? (
                       Array.from({ length: 10 }).map((_, rowIndex) => (
                         <tr key={rowIndex}>
-                          {Array.from({ length: 9 }).map((_, colIndex) => (
+                          {Array.from({ length: 11 }).map((_, colIndex) => (
                             <td key={colIndex} className="px-4 py-3.5">
                               <div className="h-4 animate-pulse rounded bg-slate-100 dark:bg-slate-800" />
                             </td>
@@ -1308,7 +1340,7 @@ export default function Dashboard() {
                       ))
                     ) : products.length === 0 ? (
                       <tr>
-                        <td colSpan={9} className="py-20 text-center text-slate-400 dark:text-slate-500">
+                        <td colSpan={11} className="py-20 text-center text-slate-400 dark:text-slate-500">
                           <ShoppingCart size={40} className="mx-auto mb-3 opacity-30" />
                           <p className="font-bold">No products matching filters found</p>
                         </td>
@@ -1351,6 +1383,16 @@ export default function Dashboard() {
                             <td className="px-4 py-3 text-left">
                               <span className="inline-flex items-center bg-slate-100 dark:bg-slate-800 text-slate-650 dark:text-slate-350 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                                 {product.product_type || "Other"}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-left">
+                              <span className="text-xs font-semibold text-slate-600 dark:text-slate-350">
+                                {product.origin_country || "—"}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-left">
+                              <span className="text-xs font-semibold text-slate-600 dark:text-slate-350">
+                                {formatProductUnit(product.standard_weight, product.standard_unit)}
                               </span>
                             </td>
                             <td className="px-4 py-3 text-right">
