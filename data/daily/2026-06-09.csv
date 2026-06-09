@@ -8,6 +8,7 @@ date,category,product_name,product_type,origin,unit,lulu_price,rawabi_price,fami
 2026-06-09,Vegetables,Broccoli,Cabbage & Broccoli,,,,,9.0,,,,,Active
 2026-06-09,Vegetables,Cabbage,Cabbage & Broccoli,India,,,,8.75,,,,,Active
 2026-06-09,Vegetables,Cabbage Sliced,Cabbage & Broccoli,,1kg,,,10.0,,,10.0,Family,Active
+2026-06-09,Vegetables,Cauliflower,Cabbage & Broccoli,Qatar,,,,4.0,,,,,Active
 2026-06-09,Vegetables,Kohi,Cabbage & Broccoli,Bangladesh,,,,17.0,,,,,Active
 2026-06-09,Vegetables,Capsicum,Capsicum,Qatar,,,,6.0,,,,,Active
 2026-06-09,Vegetables,Capsicum Mix Pkt,Capsicum,Holland,4.0pcs,,,29.0,,,7250.0,Family,Active
@@ -18,9 +19,10 @@ date,category,product_name,product_type,origin,unit,lulu_price,rawabi_price,fami
 2026-06-09,Vegetables,Chow Chow (Chayote),Chayote,India,,,,8.75,,,,,Active
 2026-06-09,Vegetables,Chilly Red,Chillies & Spicy,Holland,,,,24.5,,,,,Active
 2026-06-09,Vegetables,Chilly Round Green,Chillies & Spicy,India,,,,9.5,,,,,Active
-2026-06-09,Vegetables,Ginger,Chillies & Spicy,China,,,,2.0,,,,,Active
+2026-06-09,Vegetables,Ginger,Chillies & Spicy,China,,,,2.25,,,,,Active
 2026-06-09,Vegetables,Green Chilli,Chillies & Spicy,Uganda,,,,6.0,,,,,Active
 2026-06-09,Vegetables,Green Chilli,Chillies & Spicy,India,,,,2.5,,,,,Active
+2026-06-09,Vegetables,Hot Chilli,Chillies & Spicy,Qatar,,,,3.13,,,,,Active
 2026-06-09,Vegetables,Jalapeno Hot Red Pepper,Chillies & Spicy,Usa,,,,82.0,,,,,Active
 2026-06-09,Vegetables,Mixed Chilli Red & Green Pkt,Chillies & Spicy,,,,,8.0,,,,,Active
 2026-06-09,Vegetables,Pinakbet Mixed,Combo Pack,,1kg,,,25.0,,,25.0,Family,Active
@@ -32,7 +34,7 @@ date,category,product_name,product_type,origin,unit,lulu_price,rawabi_price,fami
 2026-06-09,Vegetables,Vellary Indian,Cucumber,India,1kg,,,19.0,,,19.0,Family,Active
 2026-06-09,Vegetables,Garlic,Garlic,Egypt,,,,8.0,,,,,Active
 2026-06-09,Vegetables,Garlic,Garlic,India,,,,12.25,,,,,Active
-2026-06-09,Vegetables,Garlic Loose,Garlic,,,,,2.0,,,,,Active
+2026-06-09,Vegetables,Garlic Loose,Garlic,,,,,2.25,,,,,Active
 2026-06-09,Vegetables,Garlic Small Pkt ( ),Garlic,China,,,,5.0,,,,,Active
 2026-06-09,Vegetables,Ash Gourd(Kumbalam),Gourds,India,,,,17.5,,,,,Active
 2026-06-09,Vegetables,Dhundul,Gourds,Bangladesh,,,,17.0,,,,,Active
@@ -44,10 +46,11 @@ date,category,product_name,product_type,origin,unit,lulu_price,rawabi_price,fami
 2026-06-09,Vegetables,Fennel,Herbs,,,,,22.5,,,,,Active
 2026-06-09,Vegetables,Green Basil ( ),Herbs,Kenya,,,,16.0,,,,,Active
 2026-06-09,Vegetables,Lemon Grass,Herbs,,,,,5.5,,,,,Active
-2026-06-09,Vegetables,Parsely (Ksa),Herbs,,,,,10.0,,,,,Active
+2026-06-09,Vegetables,Parsely (Ksa),Herbs,,,,,12.0,,,,,Active
 2026-06-09,Vegetables,Thyme Green Thin,Herbs,,,,,16.0,,,,,Active
 2026-06-09,Vegetables,Bhindi (Lady'S Finger),Lady Finger,India,,,,9.0,,,,,Active
 2026-06-09,Vegetables,Baby Spinach,Leafy Vegetables,Italy,125g,,,14.0,,,112.0,Family,Active
+2026-06-09,Vegetables,Lettuce,Leafy Vegetables,Lebanon,,,,8.75,,,,,Active
 2026-06-09,Vegetables,Lettuce Bionda/ Rossa Mix,Leafy Vegetables,,125g,,,14.0,,,112.0,Family,Active
 2026-06-09,Vegetables,Lettuce Boston Soft,Leafy Vegetables,Holland,,,,16.25,,,,,Active
 2026-06-09,Vegetables,Lettuce Gem Tray,Leafy Vegetables,Spain,,,,17.0,,,,,Active
@@ -63,16 +66,17 @@ date,category,product_name,product_type,origin,unit,lulu_price,rawabi_price,fami
 2026-06-09,Vegetables,Onion Small,Onion,India,,,,5.0,,,,,Active
 2026-06-09,Vegetables,Onion Yemen,Onion,,,,,4.5,,,,,Active
 2026-06-09,Vegetables,Aloe Vera,Other Vegetables,,,,,30.0,,,,,Active
-2026-06-09,Vegetables,Amla (Gooseberry),Other Vegetables,India,,,,10.75,,,,,Active
-2026-06-09,Vegetables,Bagal,Other Vegetables,,,,,5.0,,,,,Active
+2026-06-09,Vegetables,Amla (Gooseberry),Other Vegetables,India,,,,11.0,,,,,Active
+2026-06-09,Vegetables,Bagal,Other Vegetables,,,,,4.5,,,,,Active
 2026-06-09,Vegetables,Drumstick,Other Vegetables,India,,,,7.5,,,,,Active
 2026-06-09,Vegetables,Drumstick Leaves Pkt ( ),Other Vegetables,India,150g,,,5.5,,,36.67,Family,Active
 2026-06-09,Vegetables,Eggplant,Other Vegetables,Holland,,,,28.0,,,,,Active
 2026-06-09,Vegetables,Beans,Peas & Beans,Qatar,,,,7.5,,,,,Active
 2026-06-09,Vegetables,Cluster Beans,Peas & Beans,India,,,,9.5,,,,,Active
+2026-06-09,Vegetables,Indian Beans,Peas & Beans,India,,,,10.0,,,,,Active
 2026-06-09,Vegetables,Peas Mangetout/Snow/Podded Peas,Peas & Beans,,250g,,,14.0,,,56.0,Family,Active
 2026-06-09,Vegetables,Aravi Big,Potatoes & Starchy Vegetables,India,,,,8.75,,,,,Active
-2026-06-09,Vegetables,Potato,Potatoes & Starchy Vegetables,,,,,3.0,,,,,Active
+2026-06-09,Vegetables,Potato,Potatoes & Starchy Vegetables,,,,,3.5,,,,,Active
 2026-06-09,Vegetables,Potatoes White Chat Small,Potatoes & Starchy Vegetables,Australia,,,,28.0,,,,,Active
 2026-06-09,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,India,,,,8.75,,,,,Active
 2026-06-09,Vegetables,Sweet Potato,Potatoes & Starchy Vegetables,Bangladesh,,,,17.0,,,,,Active
