@@ -9,10 +9,8 @@ const nextConfig = {
     ],
     unoptimized: true,
   },
-  experimental: {
-    outputFileTracingIncludes: {
-      "/api/**/*": ["data/products.db"],
-    },
+  outputFileTracingIncludes: {
+    "/api/**/*": ["data/products.db"],
   },
 };
 
