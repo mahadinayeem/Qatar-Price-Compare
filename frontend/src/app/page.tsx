@@ -507,6 +507,11 @@ export default function Dashboard() {
   const LIMIT = 50;
   const searchRef = useRef<NodeJS.Timeout>();
 
+  // Initial load on component mount
+  useEffect(() => {
+    fetchProducts(1);
+  }, []);
+
   // Load Theme from LocalStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
