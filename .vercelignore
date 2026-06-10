@@ -1,0 +1,11 @@
+node_modules
+.git
+.env.local
+.env.*.local
+.next
+scraper/__pycache__
+scraper/.pytest_cache
+*.pyc
+.vscode
+.DS_Store
+README.md
