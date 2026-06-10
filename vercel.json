@@ -3,8 +3,5 @@
   "outputDirectory": "frontend/.next",
   "devCommand": "cd frontend && npm run dev",
   "installCommand": "npm install && cd frontend && npm install",
-  "regions": ["iad1"],
-  "env": {
-    "DATABASE_PATH": "@database_path"
-  }
+  "regions": ["iad1"]
 }
